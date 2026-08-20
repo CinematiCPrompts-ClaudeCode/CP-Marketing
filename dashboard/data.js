@@ -1515,5 +1515,9 @@ window.DASH = {
       "n": 4
     }
   ],
-  "updated": "2026-08-20T16:29:09"
+  "updated": "2026-08-20T18:58:47",
+  "stale": [
+    "instagram",
+    "facebook"
+  ]
 };

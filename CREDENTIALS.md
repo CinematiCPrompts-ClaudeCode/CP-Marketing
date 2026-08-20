@@ -82,3 +82,35 @@ and update the log itself.
 - The `.p8` is a private key — treat it like a password.
 - If a key leaks: YouTube → delete it in Credentials; Apple → revoke it under
   Team Keys. Both are instant.
+
+---
+
+## 4) Meta (Instagram + Facebook)
+
+Powers the `instagram` and `facebook` columns. **These tokens die whenever you change
+your Facebook password** — Meta invalidates the session. The symptom in `./run.sh`:
+
+```
+Meta API error 400: ... "The session has been invalidated because the user
+changed their password" ... code 190, error_subcode 460
+```
+
+`refresh.py` keeps the last known good rows and marks them STALE rather than wiping
+them, so a dead token costs you freshness, not history. To recover:
+
+1. Open the **Graph API Explorer** → https://developers.facebook.com/tools/explorer
+2. Select your app → **Generate Access Token**, granting at least:
+   `pages_show_list`, `pages_read_engagement`, `read_insights`,
+   `instagram_basic`, `instagram_manage_insights`, `business_management`
+3. Copy the short-lived token, then exchange it for a long-lived one:
+
+   ```bash
+   ./.venv/bin/python scripts/meta_token.py <SHORT_LIVED_TOKEN>
+   ```
+
+4. Paste the result into `.env` as `META_ACCESS_TOKEN` and re-run `./run.sh`.
+
+**Prefer the PAGE token** the script prints over the user token: page tokens derived
+from a long-lived user token do not expire, so you won't repeat this every 60 days.
+
+`META_APP_ID` and `META_APP_SECRET` must already be in `.env` — the exchange needs them.
