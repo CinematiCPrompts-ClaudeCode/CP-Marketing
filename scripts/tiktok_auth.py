@@ -7,14 +7,39 @@ import urllib.parse
 import requests
 
 # --- CONFIGURATION ---
-# Your Client Key from the previous steps
-CLIENT_KEY = "sbaw38iz0q3h0sm8ga"
+# Credentials come from .env (gitignored) — NEVER hardcode them here.
+# They were previously inlined in this file and reached a git commit; if you are
+# reading this on a machine that ever had that version, rotate the secret in the
+# TikTok developer console.
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Pre-filled with your actual Client Secret to avoid find-and-replace bugs
-CLIENT_SECRET = "Kqw6snEaJRNV3PjmnixZ1yYkwdX8Shmk"
+
+def _load_env(path=os.path.join(ROOT, ".env")):
+    try:
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    os.environ.setdefault(k.strip(), v.strip())
+    except FileNotFoundError:
+        pass
+
+
+_load_env()
+
+CLIENT_KEY = os.environ.get("TIKTOK_CLIENT_KEY", "")
+CLIENT_SECRET = os.environ.get("TIKTOK_CLIENT_SECRET", "")
 
 # This must match your TikTok Developer Console EXACTLY
-REDIRECT_URI = "http://127.0.0.1:8080/"
+REDIRECT_URI = os.environ.get("TIKTOK_REDIRECT_URI", "http://127.0.0.1:8080/")
+
+if not CLIENT_KEY or not CLIENT_SECRET:
+    raise SystemExit(
+        "✗ TIKTOK_CLIENT_KEY / TIKTOK_CLIENT_SECRET missing from .env\n"
+        "  Add them from https://developers.tiktok.com → your app → Credentials,\n"
+        "  then re-run:  ./.venv/bin/python scripts/tiktok_auth.py"
+    )
 SCOPES = "user.info.basic,video.list"
 STATE = "cp"
 
