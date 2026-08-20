@@ -89,6 +89,16 @@ _Add only judgment-level reminders here as you learn them; the deterministic che
   segment label — both would have been blocked instantly in text, both sailed through because
   they were pixels. **Before approving any rendered cut, read its on-screen text as if it were
   caption copy** (extract frames if needed) and run the same claims check.
+- **A guardrail that has never fired is not a guardrail.** The `#aiproductphotography` context
+  rule scanned the whole caption *including the hashtag line* — and the tag itself contains the
+  fit keyword "product", so it always justified its own presence. Dead since written, found only
+  by writing a test that asserted it should fail. **When adding a context/keyword rule, test the
+  negative case**, and never let the thing being judged be part of the text you judge it by.
+- **A partial API failure is more dangerous than a total one.** `refresh.py` guarded against
+  "every source returned nothing" but not "two of four returned nothing" — so a transient YouTube
+  404 plus an expired TikTok token silently overwrote 47 and 40 posts of history while Meta
+  succeeded. Guards must be **per-source**, and a failed fetch must preserve, not overwrite.
+  Also: the YouTube handler discarded the 30 items it had already collected before failing.
 - **YouTube has now shipped Private three times** (2026-07-14, 07-25, 08-12 — all `null` views
   in `data.js`). The gate warns every run and cannot verify the toggle. Confirm Public in the
   Studio UI before treating a YouTube post as published.
