@@ -175,6 +175,56 @@ window.DASH = {
       "name": "The Handoff \u2014 an AI Short Film in 1980s East Berlin Style | Cinematic Prompts",
       "date": "2026-07-03",
       "views": 28
+    },
+    {
+      "name": "5 Real Daylight Looks, Same AI Scene \u2014 Dawn to Night (Cinematic Prompts App)",
+      "date": "2026-08-20",
+      "views": 4
+    },
+    {
+      "name": "AI Nature Documentary created with the Cinematic Prompts  App AI Prompt Generator",
+      "date": "2026-08-12",
+      "views": 1
+    },
+    {
+      "name": "Prenzlauer Berg 1986",
+      "date": "2026-08-09",
+      "views": 218
+    },
+    {
+      "name": "AI Prompts for Film, Product & Fashion Shots \u2014 One App (Cinematic Prompts)",
+      "date": "2026-08-08",
+      "views": 30
+    },
+    {
+      "name": "All these styles, one app \u2014 Cinematic Prompts for AI video generation",
+      "date": "2026-08-01",
+      "views": 118
+    },
+    {
+      "name": "Generate AI Prompts with the Cinematic Prompts App, on AppStore",
+      "date": "2026-07-28",
+      "views": 8
+    },
+    {
+      "name": "How I Made a Luxury Vespa Ad With AI \u2014 From a Prompt",
+      "date": "2026-07-25",
+      "views": 25
+    },
+    {
+      "name": "AI Fashion & Product Ads From a Prompt \u2014 New Marketing Prompts (Cinematic Prompts)",
+      "date": "2026-07-21",
+      "views": 51
+    },
+    {
+      "name": "Now Pick Your Camera Angle \u2014 New in Cinematic Prompts 1.8 (AI Prompt Generator)",
+      "date": "2026-07-18",
+      "views": 1037
+    },
+    {
+      "name": "The Far Shore \u2014 Frontier AI Short Film (Historical Documentary Style) | Cinematic Prompts",
+      "date": "2026-07-11",
+      "views": 24
     }
   ],
   "instagram": [
@@ -1515,9 +1565,5 @@ window.DASH = {
       "n": 4
     }
   ],
-  "updated": "2026-08-20T19:37:08",
-  "stale": [
-    "instagram",
-    "facebook"
-  ]
+  "updated": "2026-08-20T23:05:55"
 };

@@ -92,8 +92,65 @@ def youtube_uploads():
     except Exception as e:
         if out:
             print(f"  · YouTube pagination stopped early ({e}) — kept {len(out)} discovered so far")
+            out += _uploads_tail(key, out)
             return out
         print(f"  · YouTube discovery skipped ({e})"); return []
+
+
+def _uploads_tail(key, found):
+    """Recover the videos the poisoned custom playlist couldn't reach.
+
+    The curated playlist dies partway through pagination, and it always dies at the
+    SAME place — so what we lose is the tail, i.e. the most recent uploads, which is
+    exactly the part a weekly review needs. The channel's own uploads playlist (UU...)
+    is a different list and paginates cleanly, so we use it to fill the gap: any video
+    published after the newest one the curated playlist managed to return.
+
+    Deliberately conservative — it only adds items NEWER than the last good curated
+    entry, and prints every one it adds, so an unrelated channel upload can't quietly
+    enter the marketing dataset unnoticed.
+    """
+    if not found:
+        return []
+    try:
+        cutoff = max(v["date"] for v in found if v.get("date"))
+        known = {v["id"] for v in found}
+        handle = os.environ.get("YOUTUBE_CHANNEL", "@wolframbrandhoff941").lstrip("@")
+        cu = "https://www.googleapis.com/youtube/v3/channels?" + urllib.parse.urlencode(
+            {"part": "contentDetails", "forHandle": handle, "key": key})
+        with urllib.request.urlopen(cu) as r:
+            items = json.load(r).get("items", [])
+        if not items:
+            return []
+        uploads = items[0]["contentDetails"]["relatedPlaylists"]["uploads"]
+
+        extra, token = [], None
+        while True:
+            params = {"part": "contentDetails,snippet", "playlistId": uploads,
+                      "maxResults": 50, "key": key}
+            if token:
+                params["pageToken"] = token
+            pu = "https://www.googleapis.com/youtube/v3/playlistItems?" + urllib.parse.urlencode(params)
+            with urllib.request.urlopen(pu) as r:
+                pd = json.load(r)
+            for it in pd.get("items", []):
+                vid = it["contentDetails"]["videoId"]
+                date = (it["contentDetails"].get("videoPublishedAt")
+                        or it["snippet"].get("publishedAt", ""))[:10]
+                if vid not in known and date > cutoff:
+                    extra.append({"id": vid, "title": it["snippet"]["title"], "date": date})
+            token = pd.get("nextPageToken")
+            if not token:
+                break
+
+        if extra:
+            print(f"  · recovered {len(extra)} newer video(s) from the uploads playlist:")
+            for v in sorted(extra, key=lambda x: x["date"], reverse=True):
+                print(f"      · {v['date']}  {v['title'][:58]}")
+        return extra
+    except Exception as e:
+        print(f"  · uploads-playlist recovery failed ({e}) — continuing without the tail")
+        return []
 
 # ---------- App Store ----------
 def _month_strings(today, n=12):

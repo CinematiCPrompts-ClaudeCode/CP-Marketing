@@ -10,15 +10,19 @@ verbatim before grading it, so the system is on record being right or wrong.
 
 ## Week of 2026-08-13
 
-**Posted this week:** the sea-otter "five real lights" package — Instagram (Aug 18) and
-Facebook (Aug 18 **and** Aug 19). TikTok and YouTube did **not** go out.
+**Posted this week:** the sea-otter "five real lights" package — Instagram (Aug 18), Facebook
+(Aug 18 **and** Aug 19), YouTube (Aug 20). TikTok did **not** go out.
 
-**Results:**
-- TikTok: **not posted.** Last post Aug 12 (230). Data source is also down — see caveat below.
+**Results** (revised 2026-08-20 once Meta was restored and the YouTube tail recovered — the
+first version of this entry was written while IG/FB were stale and YouTube was truncated):
+- TikTok: **not posted.** Last post Aug 12 (230). Source still down — see caveat below.
 - Instagram: **11** (August avg 21.4, n=5) — below its own recent average.
-- Facebook: **3** (Aug 18) and **1** (Aug 19, duplicate). August avg 6.1, n=7.
-- YouTube: not posted. Data partially recovered — see caveat.
-- Downloads this week: **~20** (Aug 13–19); all-time **355**.
+- Facebook: **5** (Aug 18) and **2** (Aug 19, duplicate). August avg 6.1, n=7.
+  _(Logged as 3 and 1 in the first draft; those were the last-known-good values preserved
+  during the Meta outage. They have since ticked up. The verdict below is unaffected.)_
+- YouTube: **4** — but published **Aug 20, the day of this review**. Far too early to read;
+  carry it to next week rather than grading it. Title used the package copy verbatim.
+- Downloads this week: **24** (Aug 13–20); all-time **355**.
 
 **Grading last week's prediction:**
 First logged week — no prior prediction to grade. (`performance-log.md` was referenced by
@@ -46,15 +50,24 @@ with a four-month monotonic decline (512 → 319 → 157 → 6.1), not with capt
    in the package. Third occurrence — also happened Jul 10 and Jul 27. Likely a scheduler
    double-fire, not a human slip. Needs investigating at the tool level.
 2. **TikTok never went out** — the single strongest platform (avg 588) and the one the package
-   led with. The week's best-grounded copy went unposted.
+   led with. The week's best-grounded copy went unposted. This is the biggest single miss of
+   the week: the copy was written for TikTok first and the platform that actually converts
+   views got nothing.
 3. **The reel's blocking defects** — the banned "NO WASTED CREDITS" end card, the invented
    "MIDDAY" label, the reversed dawn/midday order — were flagged before posting. Whether the
    IG/FB posts used a corrected re-render is **unverified**; if not, a banned claim is live.
 
-**Data caveat (do not skip):** the Aug 20 refresh lost TikTok (0 rows) and YouTube (0 rows) to a
-silent API failure. YouTube is now partially restored (35 of 47 videos); **TikTok is still down**
-and needs `scripts/tiktok_auth.py` re-run. TikTok figures above are from the Aug 14 pull, not
-current. `refresh.py` now preserves per-source history instead of overwriting it.
+**Data caveat (do not skip):** the Aug 20 refresh lost TikTok and YouTube to a silent API
+failure, and the Meta token was separately invalidated by a password change (code 190/460).
+Status after the fixes:
+- **Meta: restored.** 49 IG + 44 FB rows, live. `scripts/meta_token.py` now mints replacements.
+- **YouTube: restored to 45 of 47** (8,278 views). The curated playlist still dies at its
+  poisoned entry, but the channel's uploads playlist paginates cleanly, so `refresh.py` now
+  fills the missing tail from there — recovering the 10 most recent videos, which is precisely
+  the range a weekly review depends on. The 2 still missing are Private uploads.
+- **TikTok: still down.** Needs `scripts/tiktok_auth.py` re-run, and the client secret rotated
+  first (it was hardcoded in that script and reached a commit). **No TikTok number in this
+  entry is current** — the platform is invisible, not zero.
 
 **Prediction for next week:**
 If the framing lesson holds, the TikTok post — once it actually goes out with the product-pain
