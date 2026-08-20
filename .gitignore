@@ -1,0 +1,27 @@
+# --- Secrets: never commit ---
+# Catch every *.env variant anywhere (root .env, dashboard/.deploy.env, ...)
+*.env
+!.env.example
+*.p8
+data/.tiktok_token.json
+data/.*_token.json
+
+# --- Local caches / generated state ---
+data/.daily_downloads_cache.json
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# --- Machine-local Claude Code config (contains absolute paths) ---
+.claude/settings.local.json
+
+# --- OS noise ---
+.DS_Store
+
+# --- Vendored snapshot of the app source (lives in its own repo) ---
+mrwolfcineprompts-daca2fe5-main/
+
+# --- Large binary marketing assets live outside the repo ---
+*.mp4
+*.mov

@@ -1,0 +1,71 @@
+{
+  "_comment": "Single source of truth for the preflight gate. Edit THIS when a rule changes — not prose in LESSONS.md. Every tag added here must be independently verified on that platform first (see LESSONS 'Verified hashtags'). Keep LESSONS.md pointing here.",
+
+  "verified_hashtags": {
+    "tiktok":    ["#aivideo", "#aifilmmaking", "#aicinema", "#cinematicprompts", "#nanobanana", "#aiproductphotography"],
+    "instagram": ["#aivideo", "#aifilmmaking", "#aicinema", "#cinematicprompts", "#nanobanana", "#aiproductphotography"],
+    "youtube":   ["#shorts", "#aivideo", "#aiproductphotography", "#nanobananapro"],
+    "facebook":  ["#aivideo", "#aifilmmaking", "#aicinema", "#aiproductphotography"]
+  },
+
+  "forbidden_per_platform": {
+    "youtube":  { "#cinematicprompts": "returns zero on YouTube — brand terms go in backend Studio metadata, not the visible row", "#nanobanana": "not indexed on YouTube — the real variant is #nanobananapro" },
+    "facebook": { "#cinematicprompts": "near-zero on Facebook — TikTok/IG only", "#nanobanana": "not verified on Facebook" }
+  },
+
+  "banned_everywhere": {
+    "#fyp": "no real targeting value",
+    "#viral": "no real targeting value",
+    "#ai": "too broad to target",
+    "#multiscenevideo": "invented from descriptive language — had no real audience, underperformed"
+  },
+
+  "context_sensitive": {
+    "#aiproductphotography": {
+      "reason": "commerce/product tag — verified real but only relevant to product/fashion/marketing content, NOT wildlife/nature/narrative pieces",
+      "fit_keywords": ["product", "fashion", "commerce", "commercial", "marketing-grade", "ad ", "ads", "retail", "ecommerce", "e-commerce"]
+    }
+  },
+
+  "hashtag_count": {
+    "tiktok":    [3, 6],
+    "instagram": [5, 5],
+    "youtube":   [3, 5],
+    "facebook":  [3, 5]
+  },
+
+  "generator_names": ["gemini", "runway", "kling", "seedance", "sora", "veo", "luma", "pika"],
+  "generator_names_note": "Never in visible caption copy. Allowed only in a line marked 'Backend tags:' or an App Store keyword section.",
+
+  "engagement_bait": ["comment below", "comment down", "drop a comment", "save this", "save it for", "like and follow", "follow for more", "tag a friend", "link in comments"],
+
+  "banned_phrases": {
+    "no wasted credits": "the app reduces waste, never eliminates it — say 'fewer wasted credits'",
+    "zero waste": "same — the generator can still miss",
+    "lands first try": "never guarantee a first-try landing",
+    "never miss": "the app writes the prompt; the generator can still miss",
+    "guaranteed": "no guarantees about generator output",
+    "more presets": "not a claim we make",
+    "harsh noon": "not a real lighting name — the five are dawn, sunny, Golden Hour, blue hour, night",
+    "overcast": "not a real lighting name"
+  },
+
+  "proven_winners": {
+    "tiktok": [
+      { "pattern": "transformation", "example": "Amateur to Hollywood in 1 click", "views": 1986 },
+      { "pattern": "story-teaser series", "example": "The Crime", "views": 1867 },
+      { "pattern": "triple-negation pain", "example": "No studio. No photographer. No shoot.", "views": 858 }
+    ],
+    "youtube": [
+      { "pattern": "searchable feature title", "example": "Now Pick Your Camera Angle — New in Cinematic Prompts", "views": 1033 },
+      { "pattern": "narrative", "example": "The Ride", "views": 1054 }
+    ],
+    "facebook": [
+      { "pattern": "nature-doc + plain caption", "example": "AI did it anyway", "views": 2495 },
+      { "pattern": "nature-doc", "example": "AI Nature Documentary — West Coast Ocean", "views": 1096 }
+    ],
+    "instagram": [
+      { "pattern": "coastal nature", "example": "coastal/ocean footage", "views": 717 }
+    ]
+  }
+}
