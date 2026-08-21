@@ -40,7 +40,12 @@ if not CLIENT_KEY or not CLIENT_SECRET:
         "  Add them from https://developers.tiktok.com → your app → Credentials,\n"
         "  then re-run:  ./.venv/bin/python scripts/tiktok_auth.py"
     )
-SCOPES = "user.info.basic,video.list"
+# Only what refresh.py actually calls: /v2/video/list/ needs video.list and nothing else.
+# Requesting user.info.basic as well used to make TikTok reject the whole authorize
+# request ("Es ist etwas schiefgelaufen ... bestimmte App-Einstellungen") on apps where
+# that scope isn't added — an unapproved scope fails the request before consent is shown.
+# Override via TIKTOK_SCOPES in .env if a future feature needs more.
+SCOPES = os.environ.get("TIKTOK_SCOPES", "video.list")
 STATE = "cp"
 
 

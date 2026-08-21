@@ -179,7 +179,7 @@ window.DASH = {
     {
       "name": "5 Real Daylight Looks, Same AI Scene \u2014 Dawn to Night (Cinematic Prompts App)",
       "date": "2026-08-20",
-      "views": 4
+      "views": 5
     },
     {
       "name": "AI Nature Documentary created with the Cinematic Prompts  App AI Prompt Generator",
@@ -698,7 +698,7 @@ window.DASH = {
   ],
   "tiktok": [],
   "downloads": 355,
-  "downloads60": 193,
+  "downloads60": 192,
   "daily": [
     {
       "d": "2026-01-16",
@@ -1563,7 +1563,15 @@ window.DASH = {
     {
       "d": "2026-08-19",
       "n": 4
+    },
+    {
+      "d": "2026-08-20",
+      "n": 0
     }
   ],
-  "updated": "2026-08-20T23:10:11"
+  "updated": "2026-08-21T07:35:13",
+  "stale": [
+    "instagram",
+    "facebook"
+  ]
 };
