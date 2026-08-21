@@ -4,6 +4,55 @@ Running log of changes, fixes, and decisions. Newest first.
 
 ---
 
+## 2026-08-21 — All four sources live; framing win confirmed; next package built
+
+**The week's result: the framing change worked.** The sea-otter package hit **805 on TikTok**
+(Aug 17) — 3.1× the August average of 262. Both predictions HIT (TikTok "clear 500", Instagram
+"flat 10-25" → 11). The controlled comparison is clean: two nature posts five days apart, same
+channel, differing only in caption frame — wildlife-as-subject 230 vs product-pain **805**.
+Promoted from experiment to a default rule in LESSONS.
+
+**But the KPI didn't move, and that's the finding that matters.** The 805-view week produced
+**19 downloads — the lowest of the last four weeks** (25 / 21 / 29 / 19). Views tripled, installs
+fell. Getting views on TikTok is now solved; converting them is not. Next package therefore
+tests the CTA, not the hook.
+
+**All four sources live for the first time.** A long credential fight, most of it self-inflicted:
+- Meta died twice — first a password change (code 190/460), then an expired short-lived token
+  (190/463). Added `scripts/meta_token.py` + a CREDENTIALS section; **use the PAGE token**, it
+  doesn't expire. `refresh.py` only understood user tokens, so following that advice broke it
+  (`/me/accounts` doesn't exist on a Page) — now handles both.
+- **TikTok was broken by my own commit.** Moving credentials out of the source into `.env`
+  silently switched apps: `.env` held `sbawa5c7mkdgoxox43` (the Lovable upload app), not the
+  working `sbaw38iz0q3h0sm8ga`. Six rounds of console reconfiguration chased the wrong app. The
+  user's "this worked before the deploy" was right; I twice concluded otherwise. Restored.
+- YouTube recovered 35→45 videos via the uploads-playlist fallback.
+
+**Bugs found and fixed:** a dead guardrail (`#aiproductphotography`'s commerce check scanned the
+hashtag line, and the tag contains "product", so it always passed itself); the partial-failure
+data wipe; the YouTube playlist truncation hiding the *recent* tail; `refresh.py` discarding
+publish timestamps, which made all posting-time advice unevidenced.
+
+**Repo work:** `git init` → https://github.com/MisterWolf1965/Marketing-Agent (private).
+50 tests (34 preflight + 16 refresh). `.gitignore` hardened — it would have committed a live
+TikTok OAuth token and an SFTP password. `data/performance-log.md` created and running: 2 HIT
+predictions, 2 KILL verdicts. Brand assets + design system stored in `brand/assets/`.
+
+**Shipped:** `packages/2026-08-21-diverse-set-change.md` (gate CLEAR) — 28s variety reel, film +
+commerce. Facebook deliberately unwritten; its stop rule fired at 7 and 2. Cover + credits-led
+end card designed to the real CI, inside social safe zones.
+
+**Open for next session:**
+1. **Was the otter reel re-rendered?** The banned "NO WASTED CREDITS" end card and invented
+   "MIDDAY" label were flagged pre-post and never confirmed fixed. If not, a banned claim is live.
+2. **Facebook audit** — Meta Business Suite reach settings / Page restrictions. Not a copy problem.
+   Also: the same post has now double-fired three times (Jul 10, Jul 27, Aug 18/19).
+3. **YouTube visibility discipline** — Private shipped 3×; Aug 12 = 1 view, Aug 20 = 5 views.
+   A 20-40× effect, far bigger than posting hour.
+4. The ~15s Instagram cut of the 28s reel (IG's band is 7-15s; it sits at 11 views).
+5. Grade the CTA experiment: downloads clear 30 → keep privacy in the CTA; under 22 → move the
+   test to the App Store page.
+
 ## 2026-08-20 — Repo groundwork + two real bugs found
 - `git init` + first commit (75 files). Wrote `README.md` for an outside reader. Hardened
   `.gitignore` — it would otherwise have committed the live TikTok OAuth refresh token and
