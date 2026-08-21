@@ -51,6 +51,16 @@ Pain-first hooks also work here ("Stop regenerating just to fix your lighting" 8
 letting AI pick your camera angle" 784) — pain-first is the one hook shape proven on all three
 of TikTok/Instagram/Facebook simultaneously, narrative titles are TikTok/YouTube-only.
 
+**★ CONFIRMED 2026-08-21 — product-pain framing beats showcase framing on TikTok, 3.5×.**
+The cleanest controlled comparison in the dataset: two nature/animal TikTok posts five days
+apart, same channel, same subject class, differing in caption frame.
+· Aug 12 wildlife-as-subject — "No safari. No plane tickets. No wildlife crew." → **230**
+· Aug 17 product-pain — "Stop regenerating just to fix the lighting." → **805**
+805 is 3.1× the August average (262). Predicted "clear 500" before posting; it cleared.
+**Product-pain is now the default TikTok frame, not an experiment.** Name the pain the creator
+actually pays (wasted credits, re-generating, flat light) — never sell the footage's subject.
+Caveat: n=1 per frame, non-identical footage — consistent with, not proof of.
+
 **August 2026 — what the "animal reel flopped" post-mortem actually showed (added 2026-08-14).**
 Monthly averages: TikTok 634.6 (Jul) → 262.0 (Aug, n=3); Facebook 512.2 (May) → 318.6 → 157.2 →
 **6.8** (Aug, n=5); Instagram 13.0 (Jul) → 21.5 (Aug, n=4, i.e. normal-for-IG, not a crash);

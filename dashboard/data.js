@@ -698,99 +698,209 @@ window.DASH = {
   ],
   "tiktok": [
     {
-      "name": "Amateur to Hollywood in 1 click",
-      "date": "2026-05-09",
-      "views": 1987
+      "name": "Stop regenerating just to fix the lighti",
+      "date": "2026-08-17",
+      "views": 805
     },
     {
-      "name": "The Conspiracy",
-      "date": "2026-02-21",
-      "views": 1030
+      "name": "No safari. No plane tickets. No wildlife",
+      "date": "2026-08-12",
+      "views": 230
     },
     {
-      "name": "No studio. No photographer. No shoot.",
-      "date": "2026-07-20",
-      "views": 859
-    },
-    {
-      "name": "This is your AI video without a cinematic prompt",
-      "date": "2026-06-20",
-      "views": 845
-    },
-    {
-      "name": "An envelope. A stairwell. Nobody says a word.",
-      "date": "2026-07-03",
-      "views": 830
-    },
-    {
-      "name": "Stop regenerating just to fix your lighting",
-      "date": "2026-07-01",
-      "views": 821
-    },
-    {
-      "name": "Nature Documentary Prompts for AI Image",
-      "date": "2026-05-31",
-      "views": 817
-    },
-    {
-      "name": "New AI prompt style! Nature Documentary",
-      "date": "2026-06-01",
-      "views": 807
-    },
-    {
-      "name": "Broken glass. A gunshot. A boss who doesn't blink.",
-      "date": "2026-06-26",
-      "views": 801
-    },
-    {
-      "name": "The Escape",
-      "date": "2026-02-23",
-      "views": 789
-    },
-    {
-      "name": "Stop letting AI pick your camera angle",
-      "date": "2026-07-16",
-      "views": 784
-    },
-    {
-      "name": "A luxury Vespa ad - no camera, no crew",
-      "date": "2026-07-25",
-      "views": 782
-    },
-    {
-      "name": "So many looks. One app.",
-      "date": "2026-07-31",
-      "views": 768
-    },
-    {
-      "name": "12 Cinematic Styles 5 Lighting Styles 6 Camera Angles",
-      "date": "2026-07-09",
-      "views": 297
-    },
-    {
-      "name": "Generate AI Prompts with the Cinematic Prompts App",
-      "date": "2026-07-27",
-      "views": 291
-    },
-    {
-      "name": "Prenzlauer Berg 1986",
+      "name": "Prenzlauer Berg 1986 A short film, \u201cThe ",
       "date": "2026-08-09",
       "views": 290
     },
     {
-      "name": "He knows every bend of this water. A hunter.",
-      "date": "2026-07-10",
-      "views": 279
-    },
-    {
-      "name": "Cinema-grade and marketing-grade AI prompts",
+      "name": "Cinema-grade and marketing-grade AI prom",
       "date": "2026-08-07",
       "views": 266
     },
     {
-      "name": "No safari. No plane tickets. No wildlife crew.",
-      "date": "2026-08-12",
-      "views": 230
+      "name": "So many looks. One app. Every scene here",
+      "date": "2026-07-31",
+      "views": 768
+    },
+    {
+      "name": "Generate AI Prompts with the Cinematic P",
+      "date": "2026-07-27",
+      "views": 291
+    },
+    {
+      "name": "A luxury Vespa ad \u2014 no camera, no crew, ",
+      "date": "2026-07-25",
+      "views": 783
+    },
+    {
+      "name": "No studio. No photographer. No shoot. Th",
+      "date": "2026-07-20",
+      "views": 859
+    },
+    {
+      "name": "Stop letting AI pick your camera angle. ",
+      "date": "2026-07-16",
+      "views": 785
+    },
+    {
+      "name": "He knows every bend of this water. A hun",
+      "date": "2026-07-10",
+      "views": 279
+    },
+    {
+      "name": "12 Cinematic Styles 5 Lighting Styles 6 ",
+      "date": "2026-07-09",
+      "views": 303
+    },
+    {
+      "name": "An envelope. A stairwell. Nobody says a ",
+      "date": "2026-07-03",
+      "views": 832
+    },
+    {
+      "name": "Stop regenerating just to fix your light",
+      "date": "2026-07-01",
+      "views": 821
+    },
+    {
+      "name": "Broken glass. A gunshot. A boss who does",
+      "date": "2026-06-26",
+      "views": 803
+    },
+    {
+      "name": "Ocean scenes are the hardest thing to ge",
+      "date": "2026-06-21",
+      "views": 299
+    },
+    {
+      "name": "This is your AI video without a cinemati",
+      "date": "2026-06-20",
+      "views": 845
+    },
+    {
+      "name": "Stop rewriting prompts to fix the lighti",
+      "date": "2026-06-16",
+      "views": 275
+    },
+    {
+      "name": "This is Cinematic Prompts' Nature Docume",
+      "date": "2026-06-14",
+      "views": 780
+    },
+    {
+      "name": "Stop burning credits on AI prompts that ",
+      "date": "2026-06-13",
+      "views": 252
+    },
+    {
+      "name": "Save credits!       Generate cinematic A",
+      "date": "2026-06-06",
+      "views": 270
+    },
+    {
+      "name": "New AI prompt style! Nature Documentary ",
+      "date": "2026-06-01",
+      "views": 807
+    },
+    {
+      "name": "A Conspiracy - Prompts generated with ne",
+      "date": "2026-05-31",
+      "views": 271
+    },
+    {
+      "name": "Nature Documentary Prompts for AI Image ",
+      "date": "2026-05-31",
+      "views": 817
+    },
+    {
+      "name": "Cinematic Prompts App - prompts for AI i",
+      "date": "2026-05-23",
+      "views": 4
+    },
+    {
+      "name": "Amateur to Hollywood in 1 click \ud83c\udfac\u2728 Ever ",
+      "date": "2026-05-09",
+      "views": 1987
+    },
+    {
+      "name": "The Woman Loop - prompts generated by th",
+      "date": "2026-04-25",
+      "views": 413
+    },
+    {
+      "name": "The Loop - prompts generated by the Cine",
+      "date": "2026-04-18",
+      "views": 611
+    },
+    {
+      "name": "The System Failure - prompts generated b",
+      "date": "2026-04-04",
+      "views": 680
+    },
+    {
+      "name": "The Letter - prompts generated by the Ci",
+      "date": "2026-03-28",
+      "views": 212
+    },
+    {
+      "name": "The Escape - prompts generated by the Ci",
+      "date": "2026-03-21",
+      "views": 279
+    },
+    {
+      "name": "The Agents - prompts generated by the Ci",
+      "date": "2026-03-14",
+      "views": 279
+    },
+    {
+      "name": "The Cinematic Prompts App  - Camera Move",
+      "date": "2026-03-13",
+      "views": 329
+    },
+    {
+      "name": "The Crime - prompts generated by the Cin",
+      "date": "2026-03-07",
+      "views": 1868
+    },
+    {
+      "name": "The City - prompts generated by the Cine",
+      "date": "2026-02-28",
+      "views": 327
+    },
+    {
+      "name": "The Ride - prompts generated by the Cine",
+      "date": "2026-02-26",
+      "views": 781
+    },
+    {
+      "name": "The Call - prompts generated by the Cine",
+      "date": "2026-02-24",
+      "views": 287
+    },
+    {
+      "name": "12 Cinematic Styles -  prompts generated",
+      "date": "2026-02-24",
+      "views": 485
+    },
+    {
+      "name": "The Escape - prompts generated by the Ci",
+      "date": "2026-02-23",
+      "views": 789
+    },
+    {
+      "name": "Revenge - prompts generated by the Cinem",
+      "date": "2026-02-22",
+      "views": 312
+    },
+    {
+      "name": "The Conspiracy - prompts generated by th",
+      "date": "2026-02-21",
+      "views": 1031
+    },
+    {
+      "name": "The Car Chase - AI prompts generated by ",
+      "date": "2026-02-21",
+      "views": 930
     }
   ],
   "downloads": 355,
@@ -1665,5 +1775,5 @@ window.DASH = {
       "n": 0
     }
   ],
-  "updated": "2026-08-21T13:28:50"
+  "updated": "2026-08-21T13:52:03"
 };

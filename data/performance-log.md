@@ -8,6 +8,68 @@ verbatim before grading it, so the system is on record being right or wrong.
 
 ---
 
+## Week of 2026-08-21 — first review with all four sources live
+
+**The headline: the framing change worked, and it worked on the platform that matters.**
+
+The sea-otter "five real lights" package, complete results:
+
+| Platform | Date | Views | Read |
+|---|---|---|---|
+| **TikTok** | Aug 17 | **805** | **3.1× the August average (262)** |
+| Instagram | Aug 18 | 11 | below IG's own Aug average (21.4) |
+| Facebook | Aug 18 + 19 | 7 and 2 | duplicate posted again |
+| YouTube | Aug 20 | 5 | one day old — not yet readable |
+
+**Grading last week's prediction.** Quoted verbatim: *"the TikTok post — once it actually goes
+out with the product-pain hook rather than wildlife framing — should **clear 500** (vs. 230-290
+for the last three August posts)."*
+→ **HIT. 805 views.** Also predicted Instagram *"stay flat, in the 10-25 band"* → **HIT, 11.**
+Two for two. The kill-condition (*"under 300 → framing is not the whole story"*) did not trigger.
+
+**The controlled comparison is unusually clean.** Two nature/animal posts, five days apart,
+same channel, same subject class — differing only in framing:
+
+- Aug 12, wildlife-as-subject: *"No safari. No plane tickets. No wildlife crew."* → **230**
+- Aug 17, product-pain: *"Stop regenerating just to fix the lighting."* → **805**
+
+**3.5× from the caption frame alone.** This is the strongest single piece of evidence in the
+dataset for the August post-mortem's central claim: TikTok pays for a named product pain and
+does not pay for showcase framing. Caveat kept explicit — n=1 per frame, and the two posts are
+not identical footage. It is consistent with the hypothesis, not proof of it.
+
+**Experiment verdicts:**
+- **Facebook reach diagnostic → KILL, confirmed.** Stop rule was *"stays sub-30 → the problem is
+  account/reach-level, stop rewriting captions."* Result 7 and 2. FB fell 157.2 (Jul) → 6.9
+  (Aug), n=7. **Stop writing Facebook copy.** Next FB action is an audit in Meta Business Suite
+  (reach settings, Page restrictions, posting method) — not another caption.
+- **Product-pain framing on TikTok → KEEP.** Promote from experiment to the default TikTok frame.
+
+**Platform trends, July → August:**
+- TikTok 635.7 → 397.8 (n=4) — still down month-over-month, but Aug is 266/290/230/**805**;
+  the recovery is entirely the reframed post.
+- Instagram 13.0 → 21.4 — marginally up, still structurally weak.
+- Facebook 157.2 → **6.9** — the collapse.
+- YouTube 171.4 → 74.4, though Aug includes a 1-day-old post.
+- Downloads: 19 in Aug 14–21; **355** all-time.
+
+**Operational failures, unchanged from last week:**
+1. **Facebook duplicated a third time** (Aug 18 *and* 19) despite "POST ONCE" in the package.
+   Also happened Jul 10, Jul 27. This is a scheduler double-fire, not a human slip — worth
+   finding at the tool level.
+2. **The reel's blocking defects were never confirmed fixed.** The banned "NO WASTED CREDITS"
+   end card and the invented "MIDDAY" label were flagged pre-post. If the posted cut was the
+   original render, a banned claim is currently live on four platforms.
+
+**Prediction for next week:** the next TikTok post using product-pain framing should **clear
+600**. If it lands under 350, the 805 was the coastal *subject* rather than the frame, and the
+next test should hold framing constant while changing subject. Instagram: predicted **flat,
+10-25** again — nothing has changed structurally there, and one more flat week means IG needs a
+different lever entirely (or demotion to maintenance). Facebook: no prediction, it is not a
+content problem.
+
+---
+
 ## Week of 2026-08-13
 
 **Posted this week:** the sea-otter "five real lights" package — Instagram (Aug 18), Facebook
