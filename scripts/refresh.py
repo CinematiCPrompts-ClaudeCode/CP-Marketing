@@ -272,6 +272,49 @@ def meta_refresh_token(token):
     except Exception:
         return token
 
+def _meta_pages(token):
+    """Return [{id, name, access_token, instagram_business_account}] for the token.
+
+    Accepts EITHER kind of Meta token, because both are legitimate here:
+      · a USER token  -> /me/accounts lists the Pages it administers.
+      · a PAGE token  -> /me IS the Page, and Pages have no `accounts` edge, so
+        /me/accounts fails with "(#100) Tried accessing nonexisting field (accounts)".
+        We then read the Page directly instead.
+
+    Page tokens derived from a long-lived user token do not expire, so they are the
+    right thing to use long term (CREDENTIALS.md recommends them) — this function is
+    what makes that recommendation actually work.
+    """
+    first_error = None
+    try:
+        pages = _mget(META_GRAPH + "/me/accounts?" + urllib.parse.urlencode(
+            {"fields": "id,name,access_token,instagram_business_account",
+             "access_token": token})).get("data", [])
+        if pages:
+            return pages
+    except Exception as e:
+        # Don't try to pattern-match the reason: urlopen raises HTTPError whose
+        # str() is just "HTTP Error 400: Bad Request" — the JSON body naming the
+        # `accounts` field is not in it. So always fall through and try the
+        # Page-token shape; if that fails too, re-raise the original error.
+        first_error = e
+
+    try:
+        me = _mget(META_GRAPH + "/me?" + urllib.parse.urlencode(
+            {"fields": "id,name,instagram_business_account", "access_token": token}))
+    except Exception:
+        if first_error:
+            raise first_error
+        raise
+    if not me.get("id"):
+        if first_error:
+            raise first_error
+        return []
+    print(f"  · using a PAGE token — reading Page {me.get('name','?')!r} directly")
+    me["access_token"] = token
+    return [me]
+
+
 def meta_fetch():
     """Discover the Page + linked IG account from the token and pull per-post
     views. Returns (ig_views{id:views}, fb_views{id:views}, discovered[list]).
@@ -283,8 +326,7 @@ def meta_fetch():
     token = meta_refresh_token(token)
     ig_views, fb_views, discovered = {}, {}, []
     try:
-        pages = _mget(META_GRAPH + "/me/accounts?" + urllib.parse.urlencode(
-            {"fields":"id,name,access_token,instagram_business_account","access_token":token})).get("data", [])
+        pages = _meta_pages(token)
         if not pages:
             print("  · token valid but no Pages returned — check it has pages_show_list "
                   "+ pages_read_engagement and that a Page is linked to your account")

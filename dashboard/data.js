@@ -478,7 +478,7 @@ window.DASH = {
     {
       "name": "Same ocean scene, five real lighting con",
       "date": "2026-08-18",
-      "views": 5
+      "views": 7
     },
     {
       "name": "The most colorful animals on earth, made",
@@ -696,7 +696,103 @@ window.DASH = {
       "views": 0
     }
   ],
-  "tiktok": [],
+  "tiktok": [
+    {
+      "name": "Amateur to Hollywood in 1 click",
+      "date": "2026-05-09",
+      "views": 1987
+    },
+    {
+      "name": "The Conspiracy",
+      "date": "2026-02-21",
+      "views": 1030
+    },
+    {
+      "name": "No studio. No photographer. No shoot.",
+      "date": "2026-07-20",
+      "views": 859
+    },
+    {
+      "name": "This is your AI video without a cinematic prompt",
+      "date": "2026-06-20",
+      "views": 845
+    },
+    {
+      "name": "An envelope. A stairwell. Nobody says a word.",
+      "date": "2026-07-03",
+      "views": 830
+    },
+    {
+      "name": "Stop regenerating just to fix your lighting",
+      "date": "2026-07-01",
+      "views": 821
+    },
+    {
+      "name": "Nature Documentary Prompts for AI Image",
+      "date": "2026-05-31",
+      "views": 817
+    },
+    {
+      "name": "New AI prompt style! Nature Documentary",
+      "date": "2026-06-01",
+      "views": 807
+    },
+    {
+      "name": "Broken glass. A gunshot. A boss who doesn't blink.",
+      "date": "2026-06-26",
+      "views": 801
+    },
+    {
+      "name": "The Escape",
+      "date": "2026-02-23",
+      "views": 789
+    },
+    {
+      "name": "Stop letting AI pick your camera angle",
+      "date": "2026-07-16",
+      "views": 784
+    },
+    {
+      "name": "A luxury Vespa ad - no camera, no crew",
+      "date": "2026-07-25",
+      "views": 782
+    },
+    {
+      "name": "So many looks. One app.",
+      "date": "2026-07-31",
+      "views": 768
+    },
+    {
+      "name": "12 Cinematic Styles 5 Lighting Styles 6 Camera Angles",
+      "date": "2026-07-09",
+      "views": 297
+    },
+    {
+      "name": "Generate AI Prompts with the Cinematic Prompts App",
+      "date": "2026-07-27",
+      "views": 291
+    },
+    {
+      "name": "Prenzlauer Berg 1986",
+      "date": "2026-08-09",
+      "views": 290
+    },
+    {
+      "name": "He knows every bend of this water. A hunter.",
+      "date": "2026-07-10",
+      "views": 279
+    },
+    {
+      "name": "Cinema-grade and marketing-grade AI prompts",
+      "date": "2026-08-07",
+      "views": 266
+    },
+    {
+      "name": "No safari. No plane tickets. No wildlife crew.",
+      "date": "2026-08-12",
+      "views": 230
+    }
+  ],
   "downloads": 355,
   "downloads60": 192,
   "daily": [
@@ -1569,9 +1665,5 @@ window.DASH = {
       "n": 0
     }
   ],
-  "updated": "2026-08-21T07:35:13",
-  "stale": [
-    "instagram",
-    "facebook"
-  ]
+  "updated": "2026-08-21T13:28:50"
 };
