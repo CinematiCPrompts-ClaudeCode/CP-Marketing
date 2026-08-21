@@ -79,17 +79,54 @@ def run_oauth_flow():
     # 4. Pause and wait for user input
     user_input = input("2) Paste the code or the entire redirect URL here: ").strip()
 
-    # --- AUTO-CLEAN LOGIC ---
-    # Extracts the code cleanly even if you paste the entire broken URL
-    auth_code = user_input
-    if "?code=" in auth_code:
-        auth_code = auth_code.split("?code=")[1]
-    if "&" in auth_code:
-        auth_code = auth_code.split("&")[0]
-    # ------------------------
+    # --- PARSE + VALIDATE ---
+    # Parse properly rather than splitting on "?code=": TikTok can return the
+    # authorize URL back with an ?error= on it, and the old string-split silently
+    # passed that whole URL through as if it were a code. The API then replied
+    # "Authorization code is expired", which sent you looking at the wrong problem.
+    if not user_input:
+        print("❌ You didn't paste anything.")
+        return
 
+    auth_code = user_input
+    if "://" in user_input or "?" in user_input or "&" in user_input:
+        qs = urllib.parse.parse_qs(urllib.parse.urlparse(user_input).query)
+
+        if "error" in qs:
+            err = qs["error"][0]
+            desc = qs.get("error_description", [""])[0]
+            print(f"\n❌ TikTok refused the authorization: {err}")
+            if desc:
+                print(f"   {desc}")
+            if err == "access_denied":
+                print(
+                    "\n   This is a consent-step failure — no code was ever issued.\n"
+                    "   Usual causes, most likely first:\n"
+                    "     1. The app is in SANDBOX mode (client key starts 'sb') and the\n"
+                    "        TikTok account you logged in with is not added as a target user.\n"
+                    "        Fix: developer console → your app → Sandbox → add the account.\n"
+                    "     2. The scopes user.info.basic / video.list are not approved for the app.\n"
+                    "     3. 'Cancel' / 'Deny' was clicked on the consent screen.\n"
+                    "     4. You authorized with a different TikTok account than the one that\n"
+                    "        owns the videos.\n"
+                )
+            return
+
+        if "code" not in qs:
+            print("\n❌ That URL has no ?code= in it, so there's nothing to exchange.")
+            print("   Paste the URL you were redirected TO (it will start http://127.0.0.1:8080/),")
+            print("   not the tiktok.com authorize URL you opened.")
+            return
+
+        auth_code = qs["code"][0]
+        state = qs.get("state", [None])[0]
+        if state and state != STATE:
+            print(f"❌ state mismatch (got {state!r}, expected {STATE!r}) — aborting.")
+            return
+
+    auth_code = urllib.parse.unquote(auth_code).strip()
     if not auth_code:
-        print("❌ Error: You didn't paste anything.")
+        print("❌ Couldn't extract an authorization code.")
         return
 
     print(f"\n🔄 Cleaned auth code: {auth_code[:15]}...")
