@@ -481,6 +481,29 @@ def _load_previous_dash():
     except Exception:
         return {}
 
+SOURCE_KEYS = ("youtube", "instagram", "facebook", "tiktok")
+
+
+def apply_staleness_guard(data, prev):
+    """Keep last-known-good rows for any source that came back empty.
+
+    A failed API call must never silently destroy history. Mutates `data` in place
+    and returns a list of human-readable "<source> (N rows kept)" strings, empty
+    when nothing was preserved.
+
+    The bug this exists for: the original guard only refused to write when EVERY
+    source was empty. On 2026-08-20 a YouTube 404 and an expired TikTok token wiped
+    47 and 40 posts while Meta succeeded — so the all-empty check never fired and
+    the history was gone. The check has to be per-source.
+    """
+    stale = []
+    for key in SOURCE_KEYS:
+        if not data.get(key) and prev.get(key):
+            data[key] = prev[key]
+            stale.append(f"{key} ({len(prev[key])} rows kept)")
+    return stale
+
+
 def main():
     load_env()
     rows = list(csv.DictReader(open(CSV_PATH)))   # videos.csv used only for manual TikTok fallback
@@ -582,11 +605,7 @@ def main():
     # empty but we had rows for it last run, keep the old rows and flag them stale.
     # (Before this guard, a YouTube 404 + expired TikTok token wiped 47 and 40 posts
     #  while Meta succeeded, so the all-sources-empty check below never fired.)
-    stale = []
-    for _key in ("youtube", "instagram", "facebook", "tiktok"):
-        if not data[_key] and prev.get(_key):
-            data[_key] = prev[_key]
-            stale.append(f"{_key} ({len(prev[_key])} rows kept)")
+    stale = apply_staleness_guard(data, prev)
     if stale:
         data["stale"] = [s.split(" (")[0] for s in stale]
         print("\n  ! STALE — these sources failed this run; previous rows kept:")
