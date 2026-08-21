@@ -51,6 +51,20 @@ Pain-first hooks also work here ("Stop regenerating just to fix your lighting" 8
 letting AI pick your camera angle" 784) — pain-first is the one hook shape proven on all three
 of TikTok/Instagram/Facebook simultaneously, narrative titles are TikTok/YouTube-only.
 
+**YouTube publish hour — weak signal, now finally measurable (added 2026-08-21).** `refresh.py`
+was truncating the API's publish timestamp to `[:10]`, throwing the time away, so posting-hour
+advice had never been evidence-based. Now stored as `published`. Across 43 videos, median views
+by CEST hour: 08–12 → 94 (n=7), **12–15 → 38 (n=6)**, **15–19 → 192 (n=12)**, 19–24 → 90 (n=18).
+Default YouTube slot moved to ~16:30 CEST. **Treat as weak:** content confounds it badly, and the
+hour explains none of the collapses — the 1-view Aug 12 post went out at 19:xx, while Aug 9 at
+14:xx (inside the "bad" window) got 218.
+
+**★ The real YouTube killer is visibility at publish, not the hour.** Aug 12 = 1 view (confirmed
+set Private), Aug 20 = 5 views, against a recent baseline of 25–218. A video that isn't Public
+during its launch window never gets the initial push, and flipping it Public later does not
+recover it. This is a 20–40× effect; posting hour is at best a 2–5× one. **Confirm Public in
+Studio immediately after upload — before anything else.**
+
 **★ CONFIRMED 2026-08-21 — product-pain framing beats showcase framing on TikTok, 3.5×.**
 The cleanest controlled comparison in the dataset: two nature/animal TikTok posts five days
 apart, same channel, same subject class, differing in caption frame.

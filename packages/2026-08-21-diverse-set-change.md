@@ -70,7 +70,7 @@ Grounding: variety title, 118 ("All these styles, one app — Cinematic Prompts 
 
 #shorts #aivideo #aiproductphotography
 **Backend tags:** cinematic prompts app, AI prompt generator for video, fashion photography prompts, product photography prompts, cinematic ad prompts, AI video generator app, film style prompts, gemini, runway, kling, seedance
-**⏰ Post: Wed 2026-08-26, 12:00 CEST**
+**⏰ Post: Wed 2026-08-26, 16:30 CEST** — moved off midday. Across 43 videos with real publish timestamps, the 15:00–19:00 CEST window has the best median (192, n=12) and 12:00–15:00 the worst (38, n=6). Weak and content-confounded, but it's the only time-of-day evidence we have and it costs nothing to act on.
 
 _🚨 Set visibility to **Public** before publishing. Three uploads (Jul 14, Jul 25, Aug 12) sit in `data.js` with null views because the toggle was never flipped._
 

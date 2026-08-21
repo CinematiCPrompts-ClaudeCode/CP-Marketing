@@ -82,10 +82,12 @@ def youtube_uploads():
             pu = "https://www.googleapis.com/youtube/v3/playlistItems?" + urllib.parse.urlencode(params)
             with urllib.request.urlopen(pu) as r: pd = json.load(r)
             for it in pd.get("items",[]):
+                _ts = (it["contentDetails"].get("videoPublishedAt")
+                       or it["snippet"].get("publishedAt", ""))
                 out.append({"id": it["contentDetails"]["videoId"],
                             "title": it["snippet"]["title"],
-                            "date": (it["contentDetails"].get("videoPublishedAt")
-                                     or it["snippet"].get("publishedAt",""))[:10]})
+                            "date": _ts[:10],
+                            "published": _ts})
             token = pd.get("nextPageToken")
             if not token: break
         return out
@@ -138,7 +140,9 @@ def _uploads_tail(key, found):
                 date = (it["contentDetails"].get("videoPublishedAt")
                         or it["snippet"].get("publishedAt", ""))[:10]
                 if vid not in known and date > cutoff:
-                    extra.append({"id": vid, "title": it["snippet"]["title"], "date": date})
+                    extra.append({"id": vid, "title": it["snippet"]["title"], "date": date,
+                                  "published": (it["contentDetails"].get("videoPublishedAt")
+                                                or it["snippet"].get("publishedAt", ""))})
             token = pd.get("nextPageToken")
             if not token:
                 break
@@ -523,7 +527,8 @@ def main():
         print(f"  · backfilled {len(missing)} video(s) from videos.csv that discovery missed")
         uploads = uploads + missing
     yt_views = fetch_youtube([u["id"] for u in uploads]) if uploads else {}
-    youtube = [{"name": u["title"], "date": u["date"], "views": yt_views.get(u["id"])} for u in uploads]
+    youtube = [{"name": u["title"], "date": u["date"], "views": yt_views.get(u["id"]),
+                "published": u.get("published", "")} for u in uploads]
     print(f"  · {len(youtube)} videos, {sum(v for v in yt_views.values()):,} views")
 
     print("Fetching Meta (Instagram + Facebook) …")
