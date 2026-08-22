@@ -16,7 +16,16 @@ open — it does NOT edit index.html. This is the ONE canonical refresh script;
 older forks (dashboard/refresh.py, scripts/roriginal-efresh.py) were removed in
 the 2026-08-03 rebuild.
 """
-import os, sys, csv, json, time, datetime, urllib.parse, urllib.request, urllib.error
+import os, sys, csv, json, time, socket, datetime, urllib.parse, urllib.request, urllib.error
+
+# Every network call goes through urllib, and urllib blocks FOREVER by default.
+# A stalled socket (flaky wifi, a hung TLS handshake) therefore froze the whole
+# refresh with no output and no recovery — only Ctrl+C, which loses the run.
+# One default covers every urlopen in this file; a timeout raises like any other
+# error, so the per-source staleness guard keeps that source's last-known-good
+# rows instead of wiping them. Override with REFRESH_TIMEOUT in .env.
+NET_TIMEOUT = float(os.environ.get("REFRESH_TIMEOUT", "45"))
+socket.setdefaulttimeout(NET_TIMEOUT)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CSV_PATH  = os.path.join(ROOT, "data", "videos.csv")

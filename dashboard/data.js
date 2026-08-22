@@ -212,52 +212,10 @@ window.DASH = {
       "published": "2026-07-03T17:00:40Z"
     },
     {
-      "name": "5 Real Daylight Looks, Same AI Scene \u2014 Dawn to Night (Cinematic Prompts App)",
-      "date": "2026-08-20",
-      "views": 5,
-      "published": "2026-08-20T11:00:04Z"
-    },
-    {
-      "name": "AI Nature Documentary created with the Cinematic Prompts  App AI Prompt Generator",
-      "date": "2026-08-12",
-      "views": 1,
-      "published": "2026-08-12T17:00:36Z"
-    },
-    {
-      "name": "Prenzlauer Berg 1986",
-      "date": "2026-08-09",
-      "views": 218,
-      "published": "2026-08-09T12:00:01Z"
-    },
-    {
-      "name": "AI Prompts for Film, Product & Fashion Shots \u2014 One App (Cinematic Prompts)",
-      "date": "2026-08-08",
-      "views": 30,
-      "published": "2026-08-08T13:00:31Z"
-    },
-    {
-      "name": "All these styles, one app \u2014 Cinematic Prompts for AI video generation",
-      "date": "2026-08-01",
-      "views": 118,
-      "published": "2026-08-01T17:00:30Z"
-    },
-    {
-      "name": "Generate AI Prompts with the Cinematic Prompts App, on AppStore",
-      "date": "2026-07-28",
-      "views": 8,
-      "published": "2026-07-28T17:00:06Z"
-    },
-    {
-      "name": "How I Made a Luxury Vespa Ad With AI \u2014 From a Prompt",
-      "date": "2026-07-25",
-      "views": 25,
-      "published": "2026-07-25T17:00:24Z"
-    },
-    {
-      "name": "AI Fashion & Product Ads From a Prompt \u2014 New Marketing Prompts (Cinematic Prompts)",
-      "date": "2026-07-21",
-      "views": 51,
-      "published": "2026-07-21T18:03:19Z"
+      "name": "The Far Shore \u2014 Frontier AI Short Film (Historical Documentary Style) | Cinematic Prompts",
+      "date": "2026-07-11",
+      "views": 24,
+      "published": "2026-07-11T17:00:37Z"
     },
     {
       "name": "Now Pick Your Camera Angle \u2014 New in Cinematic Prompts 1.8 (AI Prompt Generator)",
@@ -266,17 +224,83 @@ window.DASH = {
       "published": "2026-07-18T13:00:18Z"
     },
     {
-      "name": "The Far Shore \u2014 Frontier AI Short Film (Historical Documentary Style) | Cinematic Prompts",
-      "date": "2026-07-11",
-      "views": 24,
-      "published": "2026-07-11T17:00:37Z"
+      "name": "AI Fashion & Product Ads From a Prompt \u2014 New Marketing Prompts (Cinematic Prompts)",
+      "date": "2026-07-21",
+      "views": 51,
+      "published": "2026-07-21T18:03:19Z"
+    },
+    {
+      "name": "Private video",
+      "date": "2026-07-25",
+      "views": null,
+      "published": "2026-07-25T08:04:02Z"
+    },
+    {
+      "name": "Private video",
+      "date": "2026-07-25",
+      "views": null,
+      "published": "2026-07-25T08:11:29Z"
+    },
+    {
+      "name": "How I Made a Luxury Vespa Ad With AI \u2014 From a Prompt",
+      "date": "2026-07-25",
+      "views": 25,
+      "published": "2026-07-25T17:00:24Z"
+    },
+    {
+      "name": "Generate AI Prompts with the Cinematic Prompts App, on AppStore",
+      "date": "2026-07-28",
+      "views": 8,
+      "published": "2026-07-28T17:00:06Z"
+    },
+    {
+      "name": "All these styles, one app \u2014 Cinematic Prompts for AI video generation",
+      "date": "2026-08-01",
+      "views": 118,
+      "published": "2026-08-01T17:00:30Z"
+    },
+    {
+      "name": "AI Prompts for Film, Product & Fashion Shots \u2014 One App (Cinematic Prompts)",
+      "date": "2026-08-08",
+      "views": 30,
+      "published": "2026-08-08T13:00:31Z"
+    },
+    {
+      "name": "Prenzlauer Berg 1986",
+      "date": "2026-08-09",
+      "views": 219,
+      "published": "2026-08-09T12:00:01Z"
+    },
+    {
+      "name": "AI Nature Documentary created with the Cinematic Prompts  App AI Prompt Generator",
+      "date": "2026-08-12",
+      "views": 1,
+      "published": "2026-08-12T17:00:36Z"
+    },
+    {
+      "name": "Private video",
+      "date": "2026-08-17",
+      "views": null,
+      "published": "2026-08-17T16:00:20Z"
+    },
+    {
+      "name": "Deleted video",
+      "date": "2026-08-17",
+      "views": null,
+      "published": "2026-08-17T16:19:07Z"
+    },
+    {
+      "name": "5 Real Daylight Looks, Same AI Scene \u2014 Dawn to Night (Cinematic Prompts App)",
+      "date": "2026-08-21",
+      "views": 3,
+      "published": "2026-08-21T18:00:34Z"
     }
   ],
   "instagram": [
     {
       "name": "Ocean light is the hardest thing to get ",
       "date": "2026-08-18",
-      "views": 11
+      "views": 12
     },
     {
       "name": "No safari, no plane ticket, no wildlife ",
@@ -523,7 +547,7 @@ window.DASH = {
     {
       "name": "Same ocean scene, five real lighting con",
       "date": "2026-08-18",
-      "views": 7
+      "views": 8
     },
     {
       "name": "The most colorful animals on earth, made",
@@ -653,7 +677,7 @@ window.DASH = {
     {
       "name": "They built an empire. I rebuilt it in a ",
       "date": "2026-05-30",
-      "views": 694
+      "views": 695
     },
     {
       "name": "The streets never sleep. Neither does th",
@@ -703,7 +727,7 @@ window.DASH = {
     {
       "name": "Same ocean scene, five real lighting con",
       "date": "2026-08-19",
-      "views": 2
+      "views": 3
     },
     {
       "name": "The most colorful animals on earth, made",
@@ -742,6 +766,11 @@ window.DASH = {
     }
   ],
   "tiktok": [
+    {
+      "name": "You don't need a different tool for ever",
+      "date": "2026-08-22",
+      "views": 10
+    },
     {
       "name": "Stop regenerating just to fix the lighti",
       "date": "2026-08-17",
@@ -948,8 +977,8 @@ window.DASH = {
       "views": 930
     }
   ],
-  "downloads": 356,
-  "downloads60": 193,
+  "downloads": 359,
+  "downloads60": 194,
   "daily": [
     {
       "d": "2026-01-16",
@@ -1818,7 +1847,11 @@ window.DASH = {
     {
       "d": "2026-08-20",
       "n": 1
+    },
+    {
+      "d": "2026-08-21",
+      "n": 3
     }
   ],
-  "updated": "2026-08-21T18:43:51"
+  "updated": "2026-08-22T16:38:16"
 };

@@ -193,3 +193,22 @@ def test_load_previous_dash_returns_empty_on_garbage(tmp_path, monkeypatch):
 def test_load_previous_dash_returns_empty_when_absent(tmp_path, monkeypatch):
     monkeypatch.setattr(refresh, "DATA_JS_PATH", str(tmp_path / "nope.js"))
     assert refresh._load_previous_dash() == {}
+
+
+# ==========================================================================
+# Network timeouts — 2026-08-22: a stalled socket hung the whole refresh
+# ==========================================================================
+
+def test_a_default_socket_timeout_is_set():
+    """urllib blocks forever by default, so one stalled call froze the entire run.
+
+    Reported as a KeyboardInterrupt traceback mid-SSL-read: the script had no
+    timeout anywhere, so a flaky connection meant Ctrl+C and a lost pull.
+    """
+    import socket as _socket
+    assert _socket.getdefaulttimeout() is not None, "no default socket timeout set"
+    assert 0 < _socket.getdefaulttimeout() <= 120
+
+
+def test_timeout_is_overridable():
+    assert refresh.NET_TIMEOUT == float(os.environ.get("REFRESH_TIMEOUT", "45"))
