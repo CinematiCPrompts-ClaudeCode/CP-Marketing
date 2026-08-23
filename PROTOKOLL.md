@@ -4,6 +4,38 @@ Running log of changes, fixes, and decisions. Newest first.
 
 ---
 
+## 2026-08-23 — TikTok 255: the prediction missed and the framing rule got revised
+
+- **The Set Change reel went out on TikTok Fri 08-22 evening: 255 views.** My written stop rule
+  was "clear 600, kill under 350". 255 fired the kill condition. Graded MISS in
+  `data/performance-log.md`. Running score: **2 HIT, 1 MISS.**
+- **Revised the framing rule rather than defending it.** On 08-21 I promoted "product-pain
+  framing beats showcase framing, 3.5×" to a default rule off a single pair (230 vs 805). The
+  very next post used the same framing and landed 255 — 3.2× below 805. So framing alone was
+  never the driver. LESSONS now says: **content type sets the band, framing moves you within
+  it.** Single-subject demo + pain hook 784–859; variety/showcase 255–303 (one outlier, 768).
+  The 805 is better explained by the coastal otter *subject* — the same subject behind
+  Instagram's best-ever 717.
+- **Remaining schedule for this package** (user's dates): Instagram **Tue 08-25 19:00**,
+  YouTube **Wed 08-26 19:00**. Facebook still deliberately unwritten.
+- **YouTube slot moved 16:30 → 19:00 CEST, user's call**, to reach North America. Logged as a
+  test because it runs against my (weak) bucket data: 15–19 CEST median 192 n=12 vs 19–24
+  median 90 n=18. Also worth knowing — 19:00 CEST is 13:00 ET / 10:00 PT, i.e. NA *lunchtime*;
+  US prime time would be 01:00–03:00 CEST. **Signal: clears 120 → adopt 19:00; under 40 →
+  revert to ~16:30.**
+- **Fixed: a YouTube 403 was killing the whole refresh.** `quotaExceeded` raised straight out of
+  `fetch_youtube` through `main()`, so Meta, App Store and TikTok never ran and `data.js` was
+  never written. Now returns `{}` with the reason Google actually gave. Subtler half: when
+  discovery succeeds but stats fail, `main()` hands over an **empty** list rather than 49 rows
+  of `views=None` — null rows would read as a successful pull and overwrite real history.
+  Verified live against the ongoing 403; YouTube kept all 49 rows and was flagged STALE.
+  **57 tests.**
+- **The quota itself is unexplained.** A full run costs ~10 units against 10,000/day, the key
+  isn't embedded in the app source or used anywhere else on disk, and the quota was already
+  exhausted ~2h after the midnight-Pacific reset. That pattern points at the project's quota
+  *allocation* rather than real usage — check Google Cloud Console → APIs & Services → YouTube
+  Data API v3 → Quotas. YouTube numbers are frozen at last-known-good until it returns.
+
 ## 2026-08-22 — Refresh hung on a stalled socket; timeout added
 
 - **`./run.sh` hung, it didn't fail.** The traceback was a `KeyboardInterrupt` mid-SSL-read:

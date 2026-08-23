@@ -50,7 +50,7 @@ Film, product, fashion — same app, one prompt at a time. Watch the set change.
 Free on the App Store, no account needed — link in bio.
 
 #aivideo #aifilmmaking #aicinema #cinematicprompts #aiproductphotography
-**⏰ Post: Mon 2026-08-24, 19:00 CEST**
+**⏰ POSTED: Fri 2026-08-22 evening — RESULT: 255 views.** Under the 350 kill line. See the grading note at the end of this file.
 
 ## Instagram Reels — caption
 Grounding: "no separate tool" pain, 35 ("No separate tool for film, product, or fashion") — Instagram's single best post of August (avg 21.4), and this reel is literally that caption's subject matter. Two lines, the ultra-short shape behind IG's 717 / 301 / 272.
@@ -70,7 +70,7 @@ Grounding: variety title, 118 ("All these styles, one app — Cinematic Prompts 
 
 #shorts #aivideo #aiproductphotography
 **Backend tags:** cinematic prompts app, AI prompt generator for video, fashion photography prompts, product photography prompts, cinematic ad prompts, AI video generator app, film style prompts, gemini, runway, kling, seedance
-**⏰ Post: Wed 2026-08-26, 16:30 CEST** — moved off midday. Across 43 videos with real publish timestamps, the 15:00–19:00 CEST window has the best median (192, n=12) and 12:00–15:00 the worst (38, n=6). Weak and content-confounded, but it's the only time-of-day evidence we have and it costs nothing to act on.
+**⏰ Post: Wed 2026-08-26, 19:00 CEST** — your call, overriding my 16:30 suggestion, to reach North America. Logged as a deliberate test: my 43-video sample puts 15:00–19:00 CEST best (median 192, n=12) and 19:00–24:00 at median 90 (n=18), so this goes *against* the weak signal I had. One thing to know: 19:00 CEST is 13:00 ET / 10:00 PT — North American lunchtime, not evening. If the goal is US prime time, that's 01:00–03:00 CEST. **Signal: clears 120 → the NA-window reasoning beats my bucket data, adopt 19:00 as the YouTube default; under 40 → revert to ~16:30.**
 
 _🚨 Set visibility to **Public** before publishing. Three uploads (Jul 14, Jul 25, Aug 12) sit in `data.js` with null views because the toggle was never flipped._
 
@@ -113,3 +113,45 @@ says is wasted, so this package doesn't.
 `#aivideo #aifilmmaking #aicinema`, post **once**, and don't spend time tuning it. The real
 Facebook action is the audit — reach settings, Page restrictions, and why the same post has now
 fired twice on three separate occasions (Jul 10, Jul 27, Aug 18/19).
+
+---
+
+## TikTok result — 255. The prediction MISSED and the kill rule fired.
+
+Posted Fri 2026-08-22 evening. **255 views.**
+
+My written prediction was: *"the next TikTok post using product-pain framing should **clear 600**.
+If it lands **under 350**, the 805 was the coastal *subject* rather than the frame, and the next
+test should hold framing constant while changing subject."*
+
+**255 < 350. The kill condition fired on its own terms.** Recording it rather than
+reinterpreting it, because the whole point of writing the stop rule down first is that it can
+tell me I was wrong.
+
+**What this does to the "framing beats subject" conclusion.** Two days ago I promoted
+product-pain framing to a default rule in `LESSONS.md` off a single clean pair (230 vs 805) and
+called it "3.5× from the caption frame alone". This is the second data point, and it does not
+support that:
+
+| Post | Framing | Subject | Views |
+|---|---|---|---|
+| Aug 17 "Stop regenerating just to fix the lighting" | product-pain | single scene, coastal otter | **805** |
+| Aug 22 "You don't need a different tool for every look" | product-pain | variety, 7 looks | **255** |
+
+Same framing, same platform, five days apart — **3.2× apart**. So framing alone cannot explain
+805, and my "alone" was overstated on n=1.
+
+**Better hypothesis, now that there are three variety posts to compare:** content *type* sets
+the band and framing moves you within it. Variety/showcase content on TikTok lands 255–303
+(255, 266, 303) with one outlier at 768; single-subject demo content with a pain hook lands
+784–859. The 805 is more likely explained by the coastal otter subject — the same subject that
+produced Instagram's best-ever post (717) — than by the caption.
+
+**Note the grounding was still correct at the time.** This block was grounded on 768 ("So many
+looks. One app."), the one variety post that overperformed. 255 suggests 768 was the outlier in
+that group, not the norm — three of the four variety posts now sit in the 255–303 band.
+
+**Next test, per my own stop rule:** hold framing constant, change subject. A pain-framed,
+single-subject demo (not a variety reel) should clear 600 if the subject hypothesis is right.
+The transformation concept in `plans/2026-08-14-next-reel-concepts.md` fits — 2 generations,
+grounded 1987/845.

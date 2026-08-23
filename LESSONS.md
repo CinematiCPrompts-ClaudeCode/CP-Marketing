@@ -65,15 +65,27 @@ during its launch window never gets the initial push, and flipping it Public lat
 recover it. This is a 20–40× effect; posting hour is at best a 2–5× one. **Confirm Public in
 Studio immediately after upload — before anything else.**
 
-**★ CONFIRMED 2026-08-21 — product-pain framing beats showcase framing on TikTok, 3.5×.**
-The cleanest controlled comparison in the dataset: two nature/animal TikTok posts five days
-apart, same channel, same subject class, differing in caption frame.
-· Aug 12 wildlife-as-subject — "No safari. No plane tickets. No wildlife crew." → **230**
-· Aug 17 product-pain — "Stop regenerating just to fix the lighting." → **805**
-805 is 3.1× the August average (262). Predicted "clear 500" before posting; it cleared.
-**Product-pain is now the default TikTok frame, not an experiment.** Name the pain the creator
-actually pays (wasted credits, re-generating, flat light) — never sell the footage's subject.
-Caveat: n=1 per frame, non-identical footage — consistent with, not proof of.
+**★ REVISED 2026-08-23 — content TYPE sets the band; framing only moves you within it.**
+_Supersedes the 2026-08-21 claim that product-pain framing alone was worth 3.5×. That was
+promoted to a rule on n=1 and the very next post contradicted it. Kept visible as a worked
+example of over-generalising from one clean pair._
+· Aug 17 product-pain + **single-subject** (coastal otter) → **805**
+· Aug 22 product-pain + **variety reel** (7 looks) → **255**
+Same frame, same platform, five days apart, **3.2× apart** — so framing cannot be the driver.
+Predicted "clear 600, kill under 350"; it came in at 255 and the kill rule fired.
+
+**The bands, as they now stand on TikTok:**
+| Content type | Views |
+|---|---|
+| Single-subject demo + pain hook | 784–859 (784, 805, 821, 859) |
+| Variety / showcase reels | 255–303 (255, 266, 303) — one outlier at 768 |
+| Narrative "The X" shorts | 780–1868 (older, Feb–Mar) |
+| Feature-count captions | 297–485 |
+
+**Practical rule:** choose the *subject* first — a single scene demonstrating one capability
+beats a tour of many, on TikTok, by roughly 3×. Pain framing is still worth using, but it does
+not rescue variety content. The 805 is better explained by the coastal otter subject (the same
+subject behind Instagram's best-ever 717) than by its caption.
 
 **August 2026 — what the "animal reel flopped" post-mortem actually showed (added 2026-08-14).**
 Monthly averages: TikTok 634.6 (Jul) → 262.0 (Aug, n=3); Facebook 512.2 (May) → 318.6 → 157.2 →

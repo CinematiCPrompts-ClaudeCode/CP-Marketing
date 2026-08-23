@@ -8,6 +8,40 @@ verbatim before grading it, so the system is on record being right or wrong.
 
 ---
 
+## 2026-08-23 — interim: the TikTok prediction MISSED
+
+Not a full week's review; logged now because a prediction resolved and its stop rule fired.
+
+**Prediction, quoted verbatim from the week of 2026-08-21:** *"the next TikTok post using
+product-pain framing should **clear 600**. If it lands under 350, the 805 was the coastal
+*subject* rather than the frame, and the next test should hold framing constant while changing
+subject."*
+
+**Result: 255 views** (posted Fri 2026-08-22 evening, "You don't need a different tool for
+every look"). **MISS — and under the 350 kill line.**
+
+**Verdict: the framing rule is revised, not defended.** Last week I promoted "product-pain
+framing beats showcase framing, 3.5×" to a default rule in `LESSONS.md` on the strength of one
+clean pair (230 vs 805). The next post used the same framing and scored 255 — 3.2× below 805.
+Framing alone cannot explain the 805.
+
+Revised in LESSONS: **content type sets the band, framing moves you within it.** Single-subject
+demo + pain hook = 784–859. Variety/showcase = 255–303 (one outlier at 768). The Aug 17 result
+is better explained by the coastal otter *subject* — the same subject behind Instagram's
+best-ever 717 — than by its caption.
+
+**Running score on predictions: 2 HIT, 1 MISS.**
+
+**Still open on this package:** Instagram (Tue 08-25 19:00) and YouTube (Wed 08-26 19:00) have
+not gone out yet, so the CTA/downloads experiment has not resolved.
+
+**New experiment — YouTube posting hour (user-initiated).** The slot moved 16:30 → 19:00 CEST
+on the user's call, to reach North America. This runs *against* my bucket data (15–19 CEST
+median 192 n=12; 19–24 median 90 n=18), and 19:00 CEST is 13:00 ET — NA lunchtime, not evening.
+**Signal: clears 120 → adopt 19:00 as the YouTube default; under 40 → revert to ~16:30.**
+
+---
+
 ## Week of 2026-08-21 — first review with all four sources live
 
 **The headline: the framing change worked, and it worked on the platform that matters.**
