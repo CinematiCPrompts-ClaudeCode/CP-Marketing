@@ -51,10 +51,34 @@ def fetch_youtube(ids):
     for i in range(0, len(ids), 50):
         url = "https://www.googleapis.com/youtube/v3/videos?" + urllib.parse.urlencode(
             {"part":"statistics","id":",".join(ids[i:i+50]),"key":key})
-        with urllib.request.urlopen(url) as r: data = json.load(r)
+        try:
+            with urllib.request.urlopen(url) as r: data = json.load(r)
+        except Exception as e:
+            # One dead source must never kill the run. This used to raise straight
+            # out of main(), so a YouTube 403 meant Meta, App Store and TikTok never
+            # executed and data.js was never written at all.
+            print(f"  · YouTube stats unavailable ({_explain_yt_error(e)})"
+                  f" — keeping the previous view counts")
+            return {}
         for it in data.get("items",[]):
             out[it["id"]] = int(it["statistics"].get("viewCount",0))
     return out
+
+
+def _explain_yt_error(e):
+    """Turn an opaque HTTPError into the reason Google actually gave."""
+    try:
+        body = json.loads(e.read().decode())
+        err = body.get("error", {})
+        reason = (err.get("errors") or [{}])[0].get("reason", "")
+        if reason == "quotaExceeded":
+            return ("HTTP 403 quotaExceeded — the YouTube API daily quota is used up. "
+                    "It resets at midnight Pacific. If this recurs, check the quota "
+                    "allocation in Google Cloud Console > APIs & Services > YouTube "
+                    "Data API v3 > Quotas")
+        return f"HTTP {getattr(e, 'code', '?')} {reason or err.get('message', e)}"
+    except Exception:
+        return str(e)
 
 def youtube_uploads():
     """Discover videos from the configured playlist (default) — or, if no playlist
@@ -536,9 +560,16 @@ def main():
         print(f"  · backfilled {len(missing)} video(s) from videos.csv that discovery missed")
         uploads = uploads + missing
     yt_views = fetch_youtube([u["id"] for u in uploads]) if uploads else {}
-    youtube = [{"name": u["title"], "date": u["date"], "views": yt_views.get(u["id"]),
-                "published": u.get("published", "")} for u in uploads]
-    print(f"  · {len(youtube)} videos, {sum(v for v in yt_views.values()):,} views")
+    if uploads and not yt_views:
+        # Discovery worked but stats didn't. Writing 49 rows of null views would look
+        # like real data and destroy the history, so hand main() an EMPTY list and let
+        # the staleness guard restore the last known good rows instead.
+        youtube = []
+        print("  · 0 view counts returned — YouTube will be marked STALE, history kept")
+    else:
+        youtube = [{"name": u["title"], "date": u["date"], "views": yt_views.get(u["id"]),
+                    "published": u.get("published", "")} for u in uploads]
+        print(f"  · {len(youtube)} videos, {sum(v for v in yt_views.values()):,} views")
 
     print("Fetching Meta (Instagram + Facebook) …")
     ig_views, fb_views, discovered = meta_fetch()

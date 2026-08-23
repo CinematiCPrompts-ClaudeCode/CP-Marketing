@@ -212,3 +212,67 @@ def test_a_default_socket_timeout_is_set():
 
 def test_timeout_is_overridable():
     assert refresh.NET_TIMEOUT == float(os.environ.get("REFRESH_TIMEOUT", "45"))
+
+
+# ==========================================================================
+# YouTube stats failure — 2026-08-23: a 403 killed the entire run
+# ==========================================================================
+
+class _FakeHTTPError(Exception):
+    """Stands in for urllib.error.HTTPError: carries a code and a readable body."""
+    def __init__(self, code, payload):
+        super().__init__(f"HTTP Error {code}")
+        self.code = code
+        self._payload = json.dumps(payload).encode()
+        self._read = False
+
+    def read(self):
+        if self._read:
+            return b""          # HTTPError bodies are single-read, like the real thing
+        self._read = True
+        return self._payload
+
+
+def test_stats_failure_returns_empty_instead_of_raising(monkeypatch):
+    """A YouTube 403 used to propagate out of main().
+
+    Meta, App Store and TikTok never ran and data.js was never written — one dead
+    source took down all four.
+    """
+    def boom(url):
+        raise _FakeHTTPError(403, {"error": {"errors": [{"reason": "quotaExceeded"}]}})
+    monkeypatch.setattr(refresh.urllib.request, "urlopen", boom)
+    monkeypatch.setenv("YT_API_KEY", "test-key")
+    assert refresh.fetch_youtube(["abc123"]) == {}
+
+
+def test_quota_error_is_explained_not_echoed():
+    e = _FakeHTTPError(403, {"error": {"errors": [{"reason": "quotaExceeded"}],
+                                       "message": "quota"}})
+    msg = refresh._explain_yt_error(e)
+    assert "quotaExceeded" in msg
+    assert "midnight Pacific" in msg
+
+
+def test_unknown_error_still_reports_something_useful():
+    e = _FakeHTTPError(400, {"error": {"errors": [{"reason": "keyInvalid"}]}})
+    assert "keyInvalid" in refresh._explain_yt_error(e)
+
+
+def test_explain_survives_an_unreadable_body():
+    """Never let the error-explainer become the thing that raises."""
+    class Weird(Exception):
+        def read(self): raise RuntimeError("nope")
+    assert refresh._explain_yt_error(Weird("boom"))
+
+
+def test_stats_failure_leaves_history_recoverable():
+    """Empty stats must yield an EMPTY youtube list, not rows of null views.
+
+    49 rows with views=None would look like a successful pull to the staleness
+    guard and overwrite the real numbers with nulls.
+    """
+    data = {"youtube": [], "instagram": [{"n": 1}], "facebook": [], "tiktok": []}
+    prev = {"youtube": [{"name": "real", "views": 218}]}
+    refresh.apply_staleness_guard(data, prev)
+    assert data["youtube"] == [{"name": "real", "views": 218}]
