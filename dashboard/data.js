@@ -769,7 +769,7 @@ window.DASH = {
     {
       "name": "You don't need a different tool for ever",
       "date": "2026-08-22",
-      "views": 10
+      "views": 59
     },
     {
       "name": "Stop regenerating just to fix the lighti",
@@ -1853,5 +1853,5 @@ window.DASH = {
       "n": 3
     }
   ],
-  "updated": "2026-08-22T16:38:16"
+  "updated": "2026-08-22T17:18:26"
 };

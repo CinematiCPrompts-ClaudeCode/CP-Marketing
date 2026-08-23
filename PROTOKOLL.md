@@ -4,6 +4,29 @@ Running log of changes, fixes, and decisions. Newest first.
 
 ---
 
+## 2026-08-22 — Refresh hung on a stalled socket; timeout added
+
+- **`./run.sh` hung, it didn't fail.** The traceback was a `KeyboardInterrupt` mid-SSL-read:
+  `refresh.py` set **no timeout on any request**, so urllib blocked forever on a stalled TLS
+  read. Ctrl+C was the only way out, and that loses the whole pull.
+- **Fixed:** `socket.setdefaulttimeout(45)` covers every `urlopen` in the file (override via
+  `REFRESH_TIMEOUT` in `.env`). A timeout now raises like any other error, so the per-source
+  staleness guard keeps last-known-good rows instead of wiping them. Two tests pin it — **52
+  passing**.
+- **The API itself was fine** — a direct call answered in 0.4s. The re-run completed (exit 0)
+  but took **13m20s at 1% CPU**: almost entirely network wait, not a hang. The App Store part
+  only re-fetches ~16 days (416 cached), so the bulk is **Meta's per-post insight calls** —
+  49 IG + 44 FB posts, several metrics each, all sequential. If that slowness recurs, the fix
+  is caching post insights the way App Store daily reports already are; older posts' counts
+  barely move, so re-querying all 93 every run is mostly waste. Not done yet — it was a slow
+  network, not a code regression.
+- **Numbers after the pull:** YouTube **49** (up from 45 — the playlist reached further this
+  run), Instagram 49, Facebook 44, TikTok **42**, downloads **359** (355 → 359). Nothing stale.
+- Note on this log: the pre-2026-08-13 history lives in `archive/2026-08-13/PROTOKOLL.md`
+  (continuous June → 2026-08-10, 29 dated entries). The live file restarted on 08-13 **by
+  design** — the old ledger had accumulated corrections-on-corrections that were themselves
+  causing repeat mistakes. It is not missing; it is archived.
+
 ## 2026-08-21 — All four sources live; framing win confirmed; next package built
 
 **The week's result: the framing change worked.** The sea-otter package hit **805 on TikTok**
