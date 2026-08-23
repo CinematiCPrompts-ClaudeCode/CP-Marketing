@@ -36,6 +36,45 @@ Running log of changes, fixes, and decisions. Newest first.
   *allocation* rather than real usage — check Google Cloud Console → APIs & Services → YouTube
   Data API v3 → Quotas. YouTube numbers are frozen at last-known-good until it returns.
 
+### Session close — the week ahead
+
+**The Set Change reel across all four platforms, all at 19:00 CEST:**
+
+| Platform | When | State |
+|---|---|---|
+| TikTok | Sat 2026-08-22 | **POSTED — 255** (prediction MISSED, kill rule fired) |
+| Instagram | Tue 2026-08-25 | pending |
+| YouTube | Wed 2026-08-26 | pending — set **Public**; also the 19:00-vs-16:30 hour test |
+| Facebook | Thu 2026-08-27 | pending — YouTube description verbatim, no tuning, **post once** |
+
+**Review: Saturday 2026-08-29.** Three things resolve by then, each with its number already
+written down so the answer can't be argued after the fact:
+
+1. **Instagram** — its band is 11–38, best August post 35. This one is grounded on that exact
+   35 ("No separate tool for film, product, or fashion") and the reel *is* that caption's
+   subject. Anything under ~20 means the grounding didn't transfer and IG needs a different
+   lever entirely, not another caption.
+2. **YouTube hour test** — **clears 120 → adopt 19:00 as default; under 40 → revert to ~16:30.**
+   Confounded by the quota outage if it persists (views can't be read while YouTube is stale).
+3. **CTA / downloads experiment** — **clears 30 in the week of Aug 24 → keep privacy in the CTA
+   permanently; under 22 → privacy isn't the lever, move the test to the App Store page.**
+   Baseline: 25 / 21 / 29 / 19 over the last four weeks.
+
+**What I'd expect, on the record so Saturday can grade it:** Instagram lands **15–40** (its
+structural band; the grounding is good but IG reach hasn't moved all year), and downloads land
+**20–28** — i.e. the privacy CTA probably does *not* clear 30 on its own, because a 255-view
+TikTok week gives it much less traffic to convert than the 805 week did, and even that week
+produced only 19.
+
+**The strategic read going into Saturday:** variety content caps around 300 on TikTok regardless
+of caption. The next reel should hold pain framing constant and change subject back to a single
+scene — the transformation concept in `plans/2026-08-14-next-reel-concepts.md` (2 generations,
+grounded 1987/845) is the cheapest test of that.
+
+**Still unresolved and worth a minute on Saturday:** whether the otter reel was ever re-rendered.
+If it shipped with the original end card, the banned "NO WASTED CREDITS" claim is live on four
+platforms and has been for over a week.
+
 ## 2026-08-22 — Refresh hung on a stalled socket; timeout added
 
 - **`./run.sh` hung, it didn't fail.** The traceback was a `KeyboardInterrupt` mid-SSL-read:

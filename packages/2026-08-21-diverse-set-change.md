@@ -114,6 +114,12 @@ says is wasted, so this package doesn't.
 Facebook action is the audit — reach settings, Page restrictions, and why the same post has now
 fired twice on three separate occasions (Jul 10, Jul 27, Aug 18/19).
 
+**⏰ Post: Thu 2026-08-27, 19:00 CEST** — going out after all, on your call. That's consistent
+with the stop rule, which said stop spending *effort* on Facebook copy, not stop posting: the
+upload is free, a bespoke caption isn't. So it ships with the YouTube description verbatim and
+no tuning. **POST ONCE** — the double-fire has now happened three times, and a duplicate is the
+one thing here that actively costs you (it splits reach and halves an already-tiny number).
+
 ---
 
 ## TikTok result — 255. The prediction MISSED and the kill rule fired.
