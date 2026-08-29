@@ -16,7 +16,7 @@ window.DASH = {
     {
       "name": "Cinematic AI Video and Image Prompts App - Professional Results",
       "date": "2026-01-17",
-      "views": 125,
+      "views": 126,
       "published": "2026-01-17T13:23:10Z"
     },
     {
@@ -220,7 +220,7 @@ window.DASH = {
     {
       "name": "Now Pick Your Camera Angle \u2014 New in Cinematic Prompts 1.8 (AI Prompt Generator)",
       "date": "2026-07-18",
-      "views": 1037,
+      "views": 1038,
       "published": "2026-07-18T13:00:18Z"
     },
     {
@@ -230,13 +230,13 @@ window.DASH = {
       "published": "2026-07-21T18:03:19Z"
     },
     {
-      "name": "Private video",
+      "name": "Deleted video",
       "date": "2026-07-25",
       "views": null,
       "published": "2026-07-25T08:04:02Z"
     },
     {
-      "name": "Private video",
+      "name": "Deleted video",
       "date": "2026-07-25",
       "views": null,
       "published": "2026-07-25T08:11:29Z"
@@ -268,7 +268,7 @@ window.DASH = {
     {
       "name": "Prenzlauer Berg 1986",
       "date": "2026-08-09",
-      "views": 219,
+      "views": 220,
       "published": "2026-08-09T12:00:01Z"
     },
     {
@@ -292,11 +292,22 @@ window.DASH = {
     {
       "name": "5 Real Daylight Looks, Same AI Scene \u2014 Dawn to Night (Cinematic Prompts App)",
       "date": "2026-08-21",
-      "views": 3,
+      "views": 11,
       "published": "2026-08-21T18:00:34Z"
+    },
+    {
+      "name": "One App for Film, Product and Fashion AI Prompts \u2014 Cinematic Prompts",
+      "date": "2026-08-26",
+      "views": 3,
+      "published": "2026-08-26T18:00:35Z"
     }
   ],
   "instagram": [
+    {
+      "name": "No separate tool for film, product, or f",
+      "date": "2026-08-27",
+      "views": 7
+    },
     {
       "name": "Ocean light is the hardest thing to get ",
       "date": "2026-08-18",
@@ -320,7 +331,7 @@ window.DASH = {
     {
       "name": "So many looks. One app. Cinematic Prompt",
       "date": "2026-08-01",
-      "views": 12
+      "views": 13
     },
     {
       "name": "Generate AI Prompts with the Cinematic P",
@@ -545,6 +556,11 @@ window.DASH = {
   ],
   "facebook": [
     {
+      "name": "No separate tool for film, product, or f",
+      "date": "2026-08-23",
+      "views": 3
+    },
+    {
       "name": "Same ocean scene, five real lighting con",
       "date": "2026-08-18",
       "views": 12
@@ -552,12 +568,12 @@ window.DASH = {
     {
       "name": "The most colorful animals on earth, made",
       "date": "2026-08-12",
-      "views": 6
+      "views": 7
     },
     {
       "name": "A short film, \u201cThe Letter\u201d.  Prompts gen",
       "date": "2026-08-09",
-      "views": 13
+      "views": 14
     },
     {
       "name": "A professional prompt app for cinema AND",
@@ -592,7 +608,7 @@ window.DASH = {
     {
       "name": "Now choose your camera angle \u2014 new in Ci",
       "date": "2026-07-14",
-      "views": 18
+      "views": 19
     },
     {
       "name": "A hunter moves through the pines at day'",
@@ -692,17 +708,17 @@ window.DASH = {
     {
       "name": "A Hot Coffee and a Cigarette - Grainy. R",
       "date": "2026-05-28",
-      "views": 306
+      "views": 307
     },
     {
       "name": "AI did it anyway. \ud83c\udf3f\ud83c\udfa5\nGolden light. Ancie",
       "date": "2026-05-27",
-      "views": 2496
+      "views": 2497
     },
     {
       "name": "\"Most AI videos look... AI. This one doe",
       "date": "2026-05-27",
-      "views": 50
+      "views": 51
     },
     {
       "name": "Cinematic Prompts App on AppStore - New ",
@@ -725,14 +741,19 @@ window.DASH = {
       "views": 164
     },
     {
+      "name": "No separate tool for film, product, or f",
+      "date": "2026-08-26",
+      "views": 1
+    },
+    {
       "name": "Same ocean scene, five real lighting con",
       "date": "2026-08-19",
-      "views": 3
+      "views": 4
     },
     {
       "name": "The most colorful animals on earth, made",
       "date": "2026-08-13",
-      "views": 3
+      "views": 4
     },
     {
       "name": "Now choose your camera angle \u2014 new in Ci",
@@ -769,12 +790,12 @@ window.DASH = {
     {
       "name": "You don't need a different tool for ever",
       "date": "2026-08-22",
-      "views": 255
+      "views": 257
     },
     {
       "name": "Stop regenerating just to fix the lighti",
       "date": "2026-08-17",
-      "views": 805
+      "views": 807
     },
     {
       "name": "No safari. No plane tickets. No wildlife",
@@ -784,12 +805,12 @@ window.DASH = {
     {
       "name": "Prenzlauer Berg 1986 A short film, \u201cThe ",
       "date": "2026-08-09",
-      "views": 290
+      "views": 291
     },
     {
       "name": "Cinema-grade and marketing-grade AI prom",
       "date": "2026-08-07",
-      "views": 266
+      "views": 267
     },
     {
       "name": "So many looks. One app. Every scene here",
@@ -804,7 +825,7 @@ window.DASH = {
     {
       "name": "A luxury Vespa ad \u2014 no camera, no crew, ",
       "date": "2026-07-25",
-      "views": 783
+      "views": 784
     },
     {
       "name": "No studio. No photographer. No shoot. Th",
@@ -819,12 +840,12 @@ window.DASH = {
     {
       "name": "He knows every bend of this water. A hun",
       "date": "2026-07-10",
-      "views": 279
+      "views": 283
     },
     {
       "name": "12 Cinematic Styles 5 Lighting Styles 6 ",
       "date": "2026-07-09",
-      "views": 304
+      "views": 307
     },
     {
       "name": "An envelope. A stairwell. Nobody says a ",
@@ -859,7 +880,7 @@ window.DASH = {
     {
       "name": "This is Cinematic Prompts' Nature Docume",
       "date": "2026-06-14",
-      "views": 780
+      "views": 783
     },
     {
       "name": "Stop burning credits on AI prompts that ",
@@ -874,7 +895,7 @@ window.DASH = {
     {
       "name": "New AI prompt style! Nature Documentary ",
       "date": "2026-06-01",
-      "views": 807
+      "views": 809
     },
     {
       "name": "A Conspiracy - Prompts generated with ne",
@@ -914,7 +935,7 @@ window.DASH = {
     {
       "name": "The Letter - prompts generated by the Ci",
       "date": "2026-03-28",
-      "views": 212
+      "views": 213
     },
     {
       "name": "The Escape - prompts generated by the Ci",
@@ -929,12 +950,12 @@ window.DASH = {
     {
       "name": "The Cinematic Prompts App  - Camera Move",
       "date": "2026-03-13",
-      "views": 329
+      "views": 330
     },
     {
       "name": "The Crime - prompts generated by the Cin",
       "date": "2026-03-07",
-      "views": 1868
+      "views": 1870
     },
     {
       "name": "The City - prompts generated by the Cine",
@@ -959,7 +980,7 @@ window.DASH = {
     {
       "name": "Revenge - prompts generated by the Cinem",
       "date": "2026-02-22",
-      "views": 312
+      "views": 313
     },
     {
       "name": "The Conspiracy - prompts generated by th",
@@ -972,8 +993,8 @@ window.DASH = {
       "views": 930
     }
   ],
-  "downloads": 359,
-  "downloads60": 191,
+  "downloads": 375,
+  "downloads60": 195,
   "daily": [
     {
       "d": "2026-01-16",
@@ -1849,11 +1870,32 @@ window.DASH = {
     },
     {
       "d": "2026-08-22",
+      "n": 1
+    },
+    {
+      "d": "2026-08-23",
+      "n": 6
+    },
+    {
+      "d": "2026-08-24",
+      "n": 2
+    },
+    {
+      "d": "2026-08-25",
+      "n": 3
+    },
+    {
+      "d": "2026-08-26",
+      "n": 2
+    },
+    {
+      "d": "2026-08-27",
+      "n": 2
+    },
+    {
+      "d": "2026-08-28",
       "n": 0
     }
   ],
-  "updated": "2026-08-23T13:33:31",
-  "stale": [
-    "youtube"
-  ]
+  "updated": "2026-08-29T11:01:16"
 };

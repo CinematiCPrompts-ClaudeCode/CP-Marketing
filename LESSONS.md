@@ -65,6 +65,19 @@ during its launch window never gets the initial push, and flipping it Public lat
 recover it. This is a 20–40× effect; posting hour is at best a 2–5× one. **Confirm Public in
 Studio immediately after upload — before anything else.**
 
+**★★ 2026-08-29 — SOCIAL VIEWS DO NOT PREDICT DOWNLOADS. Read this before optimising a caption.**
+Nine weeks tested: views swung **8.5×** (282 → 2,385), downloads swung **1.7×** (18 → 30),
+**correlation +0.19**. The best-viewed week (2,385) produced the **fewest** downloads of the nine
+(18). Downloads sit in an 18–30/week band regardless of content performance — the shape of
+baseline App Store discovery, not social referral.
+**Consequence:** hook/framing/timing work has no measurable effect on the KPI. Before spending a
+round on captions, ask whether the lever is the App Store listing instead. As of 2026-08-29 the
+listing still does not contain "generator" or "video" in title or subtitle, so it cannot surface
+for "AI prompt generator for video" — that fix was written 08-13 and is still unshipped.
+**Caveat:** n=9 weeks, and attribution is inferred — App Store Connect's Analytics Reports API
+(impressions, product page views, conversion) is not wired up, so no install can be traced to a
+post. Wiring it is the highest-value measurement work available.
+
 **★ REVISED 2026-08-23 — content TYPE sets the band; framing only moves you within it.**
 _Supersedes the 2026-08-21 claim that product-pain framing alone was worth 3.5×. That was
 promoted to a rule on n=1 and the very next post contradicted it. Kept visible as a worked

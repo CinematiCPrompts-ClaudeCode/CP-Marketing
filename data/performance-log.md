@@ -8,6 +8,53 @@ verbatim before grading it, so the system is on record being right or wrong.
 
 ---
 
+## Week of 2026-08-29 — the week that reframed the whole effort
+
+**All three posts flopped:** Instagram **7** (Tue), YouTube **3** (Wed, published 20:00 not
+19:00), Facebook **1** (Wed) plus a duplicate at **3** (Sun). TikTok, posted 08-22, sits at 257.
+
+**Grading every open prediction — 4 for 4 against me:**
+
+| Prediction | Threshold | Actual | Grade |
+|---|---|---|---|
+| Instagram lands in band | 15–40 | 7 | **MISS** |
+| Downloads for the week | 20–28 | 19 | **MISS** |
+| YouTube hour test at 19:00 | clear 120 | 3 | **REVERT to ~16:30** |
+| Privacy CTA lifts installs | clear 30 | 19 | **KILL — not the lever** |
+
+Running score on written predictions: **2 HIT, 4 MISS.**
+
+**★ THE FINDING — social views do not predict downloads.** Tested across nine weeks:
+views swung **8.5×** (282 → 2,385) while downloads swung **1.7×** (18 → 30).
+**Correlation +0.19.** The best-viewed week (2,385) produced **18 downloads — the lowest of
+all nine**; the best download week (30) came from a mid-range 1,712.
+
+Downloads have sat in an 18–30/week band all summer regardless of content performance. That is
+the shape of baseline App Store discovery, not social referral. **Nine weeks of hook, framing,
+timing and grounding work has been optimising a variable that does not reach the KPI.**
+
+**Verdicts that follow:**
+- Privacy CTA experiment → **KILL.** 19 downloads, under its own 22 floor.
+- YouTube 19:00 hour test → **REVERT**, but provisionally: it actually published at 20:00, so
+  the test was not run cleanly.
+- Instagram grounded on its best post (35) returned 7 → **the grounding does not transfer.**
+  IG needs an account-level answer, not another caption.
+
+**Changed as a result:** stop tuning social content. The recommendation is now (1) ship the
+App Store subtitle + keyword change with 1.8.4 — written 08-13, still unshipped, listing is
+unchanged at 1.8.3 with subtitle "Create cinematic AI prompts"; (2) wire up App Store Connect's
+Analytics Reports API so conversion is measurable rather than inferred; (3) drop to one post a
+week on TikTok only; (4) keep the 2-generation transformation reel as the one cheap open test.
+
+**Prediction for next week:** downloads stay in **17–26** with reduced posting — because if
+views were driving them, this week's collapse to 282 views should already have broken the band,
+and it did not. If downloads fall below 15, posting volume does matter after all and this whole
+conclusion needs revisiting.
+
+**Full report:** https://claude.ai/code/artifact/243d00f9-406e-447e-a2e4-b07b46793bab
+
+---
+
 ## 2026-08-23 — interim: the TikTok prediction MISSED
 
 Not a full week's review; logged now because a prediction resolved and its stop rule fired.
