@@ -46,7 +46,7 @@ window.DASH = {
     {
       "name": "Cinematic Video and Image Prompt Generator App",
       "date": "2026-02-18",
-      "views": 17,
+      "views": 18,
       "published": "2026-02-18T07:04:40Z"
     },
     {
@@ -214,7 +214,7 @@ window.DASH = {
     {
       "name": "The Far Shore \u2014 Frontier AI Short Film (Historical Documentary Style) | Cinematic Prompts",
       "date": "2026-07-11",
-      "views": 24,
+      "views": 25,
       "published": "2026-07-11T17:00:37Z"
     },
     {
@@ -296,10 +296,16 @@ window.DASH = {
       "published": "2026-08-21T18:00:34Z"
     },
     {
-      "name": "One App for Film, Product and Fashion AI Prompts \u2014 Cinematic Prompts",
+      "name": "Prompt Generator App for AI Cinematic and Marketing Video and Film",
       "date": "2026-08-26",
-      "views": 3,
+      "views": 4,
       "published": "2026-08-26T18:00:35Z"
+    },
+    {
+      "name": "Private video",
+      "date": "2026-08-30",
+      "views": null,
+      "published": "2026-08-30T07:22:57Z"
     }
   ],
   "instagram": [
@@ -588,7 +594,7 @@ window.DASH = {
     {
       "name": "Generate AI Prompts with the Cinematic P",
       "date": "2026-07-27",
-      "views": 329
+      "views": 330
     },
     {
       "name": "Generate AI Prompts with the Cinematic P",
@@ -788,6 +794,11 @@ window.DASH = {
   ],
   "tiktok": [
     {
+      "name": "The Call - A micro short created with pr",
+      "date": "2026-08-30",
+      "views": 31
+    },
+    {
       "name": "You don't need a different tool for ever",
       "date": "2026-08-22",
       "views": 257
@@ -845,7 +856,7 @@ window.DASH = {
     {
       "name": "12 Cinematic Styles 5 Lighting Styles 6 ",
       "date": "2026-07-09",
-      "views": 307
+      "views": 308
     },
     {
       "name": "An envelope. A stairwell. Nobody says a ",
@@ -993,8 +1004,8 @@ window.DASH = {
       "views": 930
     }
   ],
-  "downloads": 375,
-  "downloads60": 195,
+  "downloads": 377,
+  "downloads60": 197,
   "daily": [
     {
       "d": "2026-01-16",
@@ -1894,8 +1905,12 @@ window.DASH = {
     },
     {
       "d": "2026-08-28",
+      "n": 2
+    },
+    {
+      "d": "2026-08-29",
       "n": 0
     }
   ],
-  "updated": "2026-08-29T11:01:16"
+  "updated": "2026-08-30T10:52:33"
 };

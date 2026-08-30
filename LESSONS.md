@@ -65,6 +65,15 @@ during its launch window never gets the initial push, and flipping it Public lat
 recover it. This is a 20–40× effect; posting hour is at best a 2–5× one. **Confirm Public in
 Studio immediately after upload — before anything else.**
 
+**Operating mode from 2026-08-29 — maintenance, not withdrawal.** Presence stays on all four
+platforms; what stops is four bespoke copy sets a week. **One asset, four posts, ~1 hour:**
+TikTok gets fresh grounded copy (it is the only channel with real view volume, 255–805); the
+other three reuse it mechanically. Evidence that reuse costs nothing: Instagram's 08-27 post was
+grounded on its own best-ever post (35) and returned **7** — better writing did not transfer.
+Post one platform per day so each upload's visibility toggle and duplicate-check get checked
+individually; both recurring operational failures (YouTube Private 3×, Facebook double-fire 4×)
+happen when four go out in one sitting. Full plan: `plans/2026-08-29-maintenance-cadence.md`.
+
 **★★ 2026-08-29 — SOCIAL VIEWS DO NOT PREDICT DOWNLOADS. Read this before optimising a caption.**
 Nine weeks tested: views swung **8.5×** (282 → 2,385), downloads swung **1.7×** (18 → 30),
 **correlation +0.19**. The best-viewed week (2,385) produced the **fewest** downloads of the nine
