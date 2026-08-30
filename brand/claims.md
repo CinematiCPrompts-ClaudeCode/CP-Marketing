@@ -45,3 +45,30 @@ don't assume code = shipped. Current-version facts live in `brand/positioning.md
 
 ---
 *Seeded 2026-08-03 from the corrections logged in PROTOKOLL.md. Add every future claim ruling here.*
+
+## Verified combination counts (2026-08-30, from `promptGenerator.ts`)
+
+**870 user-chosen setups total.** The two surfaces use different dials — never attribute one
+surface's output to the other's inputs:
+
+| Surface | Dials | Combinations |
+|---|---|---|
+| Cinema | 12 styles × 5 daylight × 6 camera angles | 360 |
+| Product Photography | 6 lighting × 5 angles × 8 environments | 240 |
+| Cinematic Ads | 6 lighting × 5 angles × 8 ad environments | 240 |
+| Fashion Photography | 6 lighting × 5 angles | 30 |
+
+**BANNED phrasing:** "360 cinematic *and marketing* looks from 12 styles, 5 daylight conditions
+and 6 camera angles." Those are cinema-only axes; marketing does not derive from them. Say
+"870 setups", or scope 360 explicitly to cinema.
+
+**Fashion caveat:** its environment is `pick(FASHION_ENVIRONMENTS)` — random, not user-selected.
+So "chosen, not guessed" is true of lighting and angle across all three marketing categories,
+but not of the fashion backdrop. Don't claim full environment control for Fashion.
+
+**Environments:** 8 for Product/Fashion, 8 for Cinematic Ads, but two labels (Urban Daylight,
+Architectural Glass Atrium) appear in both — **14 unique**, not 16.
+
+**Unshipped-source caveat:** these come from the Aug 29 source snapshot, which is the 1.8.5
+candidate. The live 1.8.3 listing still says 6 environments. Confirm against the build before
+publishing any count.
