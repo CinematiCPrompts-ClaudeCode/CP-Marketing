@@ -70,6 +70,6 @@ but not of the fashion backdrop. Don't claim full environment control for Fashio
 Architectural Glass Atrium) appear in both — **14 unique**, not 16.
 
 **Shipping status:** ✅ developer-confirmed 2026-08-30 that the two added environments
-(Urban Daylight, Architectural Glass Atrium) are in the **1.8.5** build, so **8 is safe to
-publish** once 1.8.5 is live. The 1.8.3 listing still says 6 — do not state 8 until 1.8.5
+(Urban Daylight, Architectural Glass Atrium) are in the **1.8.4** build, so **8 is safe to
+publish** once 1.8.4 is live. The 1.8.3 listing still says 6 — do not state 8 until 1.8.4
 is actually released.
