@@ -456,6 +456,33 @@ release date.** Rule going forward: **when logging "shipped X" for any screensho
 change, record the App Review release date as the experiment start, not the Connect upload date** —
 and don't start a measurement clock from a PROTOKOLL entry's date without checking which one it was.
 
+## ★ Repo & credentials — how this repo actually pushes
+
+**21.09.2026 — This repo lives at `CinematiCPrompts-ClaudeCode/CP-Marketing` and pushes with the
+repo's own PAT, not with SSH and not as MisterWolf1965.** Three failure modes were hit in order,
+so check them in this order next time:
+- **HTTPS with the default credential authenticates as `MisterWolf1965`**, who has no write access
+  to the `CinematiCPrompts-ClaudeCode` org → `403`. A **403 means the repo exists** (404 would mean
+  it doesn't) — useful for telling "no access" apart from "wrong name."
+- **The SSH route looks configured but is not.** `~/.ssh/cp_cc_claudecode` + the `github-cpcc` host
+  alias (created 10.09.2026) are a valid, unencrypted, correctly-wired keypair, but the public key
+  was never added to the GitHub account, so it fails `Permission denied (publickey)`. Don't spend
+  time debugging the local SSH config — the gap is server-side. Public key is in
+  `~/.ssh/cp_cc_claudecode.pub` (`SHA256:f6n7mlIie2fI4pOsE1UyXmqok0eX+vRWHyr2aUj7Epo`) if this is
+  ever worth finishing.
+- **What works: the PAT at git's interactive prompt, run from the user's own terminal.** Never ask
+  for a token in chat — it lands in the transcript and has to be rotated. Use
+  `git -c credential.helper= push -u cp-marketing main` so the keychain doesn't silently re-supply
+  MisterWolf1965's credential, with username `CinematiCPrompts-ClaudeCode`. A fine-grained PAT
+  needs *Contents: read/write* **and** org approval, or it 403s identically to the wrong-account case.
+- **`origin` still points at `MisterWolf1965/Marketing-Agent`** and is deliberately left alone —
+  `cp-marketing` is the live remote. Verify any push server-side with `git ls-remote cp-marketing`,
+  not just by trusting the local tracking ref.
+- **The keychain's cached credential for the org account is read-only: `ls-remote` succeeds, push is
+  refused with 403.** So a successful read proves nothing about write access, and **the agent cannot
+  push this repo at all** — commit freely, but the push itself is always a command for the user to
+  run in their terminal. Don't report work as pushed without an `ls-remote` SHA match.
+
 ## ★ Pre-flight checklist — the gate enforces the fixed rules (`./check.sh` → `brand/registry.json`)
 _Add only judgment-level reminders here as you learn them; the deterministic checks already run in code._
 

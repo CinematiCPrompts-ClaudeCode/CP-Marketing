@@ -4,6 +4,35 @@ Running log of changes, fixes, and decisions. Newest first.
 
 ---
 
+## 21.09.2026 — Repo migrated to its own GitHub org: CinematiCPrompts-ClaudeCode/CP-Marketing
+
+- **Committed the whole outstanding working tree** (76 paths, one commit `517f3fa`): the content
+  packages from 03.09–21.09 (instagram-return-to-form, the-crossing, pinterest-batch-1,
+  marketing-prompts-reel, red-vespa-four-generators, before-after-transformation), the
+  Pinterest/Search-Ads/tile-fix plans, the full `brand/assets/` tile + cover set (~38 MB incl. iPad
+  variants), the refreshed `dashboard/data.js`, and the updated LESSONS / claims / performance-log.
+  Everything before this was uncommitted — a single disk failure would have taken all of it.
+- **Secret scan before pushing, since the assets were never reviewed for this:** `AppleAds/` holds
+  only the 08.09 screenshot; every credential in `scripts/` (`tiktok_auth.py`, `meta_token.py`,
+  `refresh.py`) reads from env vars, nothing hardcoded. `.gitignore` already covers `*.env`, `*.p8`
+  and the token caches. Clean.
+- **New remote `cp-marketing`** → `CinematiCPrompts-ClaudeCode/CP-Marketing`. The repo was empty,
+  so nothing was overwritten; verified server-side with `git ls-remote` (HEAD and `refs/heads/main`
+  both at `517f3fa`). `origin` (MisterWolf1965/Marketing-Agent) left in place and untouched.
+- **Auth took three attempts and this is the part worth remembering.** HTTPS authenticates as
+  MisterWolf1965, who has no write access to the new org → 403 (not 404, which is how we knew the
+  repo already existed). The `~/.ssh/cp_cc_claudecode` key + `github-cpcc` host alias from 10.09
+  are valid and unencrypted, but the public key was **never added to the GitHub account**, so SSH
+  fails `Permission denied (publickey)`. What worked: the repo's own PAT, entered at git's
+  interactive prompt from the user's terminal. See `LESSONS.md`.
+- **Note for next time: the cached credential is read-only.** The macOS keychain holds a
+  credential for `CinematiCPrompts-ClaudeCode@github.com` that satisfies `git ls-remote` without a
+  prompt but is refused on push (`denied to CinematiCPrompts-ClaudeCode`, 403). So the write-capable
+  PAT was *not* stored — **every push has to be run by the user from their own terminal.** Anything
+  committed here sits local until they do.
+
+---
+
 ## 21.09.2026 — Weekend check-in: FB double-posted again, downloads flat, no new ad ran
 
 - **User flagged "another dismal weekend, 2 downloads despite new screens."** Refreshed
