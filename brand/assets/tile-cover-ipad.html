@@ -1,0 +1,25 @@
+<style>@import url('_base-ipad.css');
+  /* 4:3 is far wider than the phone canvas, so the photo moves beside the type
+     instead of under it — a full-bleed crop would either lose her or upscale 1.4x. */
+  .photo{position:absolute;right:0;top:0;bottom:0;width:1140px}
+  .photo img{width:1140px;height:2752px;object-fit:cover;display:block}
+  .photo::after{content:'';position:absolute;inset:0;
+    background:linear-gradient(90deg,#0a0a0a 0%,rgba(10,10,10,.72) 9%,rgba(10,10,10,0) 26%)}
+  .type{position:absolute;left:150px;top:540px;width:760px;z-index:2}
+  .head{font-size:176px;line-height:1.0;font-weight:500;letter-spacing:-.032em}
+  .sub{margin-top:50px;font-size:92px;line-height:1.1;font-weight:500;
+       letter-spacing:-.01em;color:var(--amber)}
+  .note{margin-top:50px;font-size:62px;line-height:1.34;font-weight:300;color:var(--ink-muted)}
+  .credit{margin-top:54px;font-family:'Space Mono',monospace;font-size:36px;
+          line-height:1.35;color:var(--ink-faint)}
+</style>
+<div class="shot">
+  <div class="photo"><img src="cover-photo-ipad.png" alt=""></div>
+  <div class="type">
+    <div class="head">Write<br>better<br>prompts.</div>
+    <div class="sub">Fewer wasted credits.</div>
+    <div class="note">The app writes the prompt so it lands more often.</div>
+    <div class="credit">Image generated from a prompt written in this app.</div>
+  </div>
+  <div class="foot"><img src="app-icon.png" alt=""><span class="wordmark">Cinematic Prompts</span></div>
+</div>

@@ -1,0 +1,31 @@
+<style>@import url('_base.css');
+  /* Same photo-bleed pattern as tile-cover.html. Pain slide — no amber payoff line,
+     the sub-line stays muted because there is nothing being sold here yet. */
+  /* Manual crop, not object-fit:cover — cover left her a small cut-off figure at the
+     bottom of a mostly-empty storefront. This crops source y=[560,1340] of the 768x1376
+     original, tight on her full figure, centered. */
+  .photo{position:absolute;left:0;right:0;bottom:0;height:1560px;overflow:hidden}
+  .photo img{position:absolute;width:1536px;height:2752px;left:-126px;top:-1120px;display:block}
+  .photo::after{content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg,#141414 0%,rgba(20,20,20,.55) 14%,rgba(20,20,20,0) 34%,
+                               rgba(34,34,34,0) 58%,rgba(30,30,30,.45) 74%,rgba(28,28,28,.82) 87%,rgba(26,26,26,.97) 95%,#222 100%)}
+  .type{position:absolute;left:110px;right:110px;top:200px;z-index:2}
+  .head{font-size:168px;line-height:1.0;font-weight:500;letter-spacing:-.032em}
+  .sub{margin-top:44px;font-size:86px;line-height:1.1;font-weight:500;
+       letter-spacing:-.01em;color:var(--ink-muted)}
+  .note{margin-top:40px;font-size:64px;line-height:1.32;font-weight:300;
+        color:var(--ink-muted);max-width:960px}
+  .credit{margin-top:46px;font-family:'Space Mono',monospace;font-size:38px;
+          color:var(--ink-faint);letter-spacing:.02em}
+</style>
+<div class="shot">
+  <div class="photo"><img src="tile-before-photo.jpg" alt=""></div>
+  <div class="type">
+    <div class="eyebrow">Before</div>
+    <div class="head">Just a<br>prompt.</div>
+    <div class="sub">Whatever it guesses, you get.</div>
+    <div class="note">No style. No lighting. No angle — the generator decides everything.</div>
+    <div class="credit">Generated with Gemini. No prompt guidance.</div>
+  </div>
+  <div class="foot"><img src="app-icon.png" alt=""><span class="wordmark">Cinematic Prompts</span></div>
+</div>

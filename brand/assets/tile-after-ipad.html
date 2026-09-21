@@ -1,0 +1,26 @@
+<style>@import url('_base-ipad.css');
+  /* Same manual-crop approach as tile-before-ipad.html — source y=[300,1200] of the
+     768x1376 original (the phone tile's face crop), re-fit to the taller 1140x2752 column. */
+  .photo{position:absolute;right:0;top:0;bottom:0;width:1140px;overflow:hidden}
+  .photo img{position:absolute;width:2348px;height:4208px;left:-604px;top:-917px;display:block}
+  .photo::after{content:'';position:absolute;inset:0;
+    background:linear-gradient(90deg,#0a0a0a 0%,rgba(10,10,10,.72) 9%,rgba(10,10,10,0) 26%)}
+  .type{position:absolute;left:150px;top:420px;width:760px;z-index:2}
+  .head{margin-top:36px;font-size:176px;line-height:1.0;font-weight:500;letter-spacing:-.032em}
+  .sub{margin-top:50px;font-size:80px;line-height:1.16;font-weight:500;
+       letter-spacing:-.01em;color:var(--amber)}
+  .note{margin-top:50px;font-size:62px;line-height:1.34;font-weight:300;color:var(--ink-muted)}
+  .credit{margin-top:54px;font-family:'Space Mono',monospace;font-size:36px;
+          line-height:1.35;color:var(--ink-faint)}
+</style>
+<div class="shot">
+  <div class="photo"><img src="tile-after-photo.jpg" alt=""></div>
+  <div class="type">
+    <div class="eyebrow">After</div>
+    <div class="head">Chosen,<br>not guessed.</div>
+    <div class="sub">Post Apocalyptic. Golden Hour. Close-Up.</div>
+    <div class="note">Same generator. Every setting picked before anything is generated.</div>
+    <div class="credit">Generated with Gemini. Prompt written in the app.</div>
+  </div>
+  <div class="foot"><img src="app-icon.png" alt=""><span class="wordmark">Cinematic Prompts</span></div>
+</div>

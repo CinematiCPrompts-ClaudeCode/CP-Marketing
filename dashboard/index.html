@@ -55,6 +55,16 @@
   .fill{height:100%;width:0;border-radius:6px;transition:width .7s cubic-bezier(.2,.7,.2,1)}
   .meter-row .val{font-family:"JetBrains Mono",monospace;font-size:13px;text-align:right;color:var(--ink)}
 
+  .funnel{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 6px}
+  @media(max-width:640px){.funnel{grid-template-columns:1fr}}
+  .fstep{position:relative;background:#ffffff06;border:1px solid #ffffff12;border-radius:12px;padding:14px 16px}
+  .fstep .flabel{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+  .fstep .fnum{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:30px;letter-spacing:-.03em;margin-top:4px}
+  .fstep .fsub{font-size:11px;color:var(--muted);margin-top:3px}
+  .fstep.pending .fnum{color:var(--faint)}
+  .frate{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11px;padding:2px 7px;border-radius:99px;margin-top:8px;
+         background:#ffffff0d;border:1px solid #ffffff14;color:var(--teal)}
+  .frate.weak{color:var(--rose)}
   .head{display:flex;align-items:baseline;gap:12px;margin:30px 2px 14px;flex-wrap:wrap}
   .head h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:17px;letter-spacing:-.01em}
   .head .tag{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
@@ -179,6 +189,14 @@
         <div class="meter" id="meter"></div>
       </div>
     </div>
+  </div>
+
+  <!-- APP STORE FUNNEL -->
+  <div class="head rev"><h2>App Store funnel</h2><span class="tag">impressions → page views → downloads</span><div class="rule"></div></div>
+  <div class="card rev">
+    <div class="cap">Where the App Store loses people. <b>Impressions</b> = times the listing appeared in search or browse (moved by the subtitle and keywords). <b>Product page views</b> = taps through to the page. <b>Downloads</b> = installs (moved by screenshots, preview video and description). A weak first step is an ASO problem; a weak second step is a product-page problem.</div>
+    <div class="funnel" id="funnel"></div>
+    <div class="hint" id="funnelNote"></div>
   </div>
 
   <!-- KPIs -->
@@ -346,7 +364,7 @@ const CLAUDE_START = '2026-06-13';
 
 function updateStamp(){
   const u = document.getElementById('updated'); if(!u) return;
-  if (D.updated) u.textContent = 'data updated ' + D.updated.replace('T',' ').slice(0,16);
+  if (D.updated) u.textContent = 'data updated ' + deDate(D.updated) + ' ' + String(D.updated).slice(11,16);
   else u.textContent = 'no data yet — run refresh.py';
 }
 
@@ -449,7 +467,7 @@ function drawTimeline(){
   for(let g=0;g<=4;g++){const val=vTop*g/4,yy=yL(val);
     s+=`<line class="gridline" x1="${pad.l}" y1="${yy}" x2="${W-pad.r}" y2="${yy}"/><text class="axis" x="${pad.l-8}" y="${yy+3}" text-anchor="end">${fmt(val)}</text>`;}
   for(let k=0;k<=3;k++){const t=tmin+(tmax-tmin)*k/3;
-    s+=`<text class="axis" x="${x(t)}" y="${H-14}" text-anchor="middle">${new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</text>`;}
+    s+=`<text class="axis" x="${x(t)}" y="${H-14}" text-anchor="middle">${new Date(t).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})}</text>`;}
   seriesPts.forEach(s2=>{
     const pts=s2.pts.map(p=>({x:x(p.ts),y:yL(p.v)}));
     if(pts.length>=2) s+=`<polyline fill="none" stroke="${s2.col}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="${pts.map(p=>p.x+','+p.y).join(' ')}"/>`;
@@ -459,7 +477,7 @@ function drawTimeline(){
   const tkTs=Date.parse(CLAUDE_START);
   if(!isNaN(tkTs)&&tkTs>=tmin&&tkTs<=tmax){
     const mx=x(tkTs), anchor= mx>W-55?'end':(mx<pad.l+25?'start':'middle');
-    s+=`<line x1="${mx}" y1="${pad.t-1}" x2="${mx}" y2="${pad.t+ih}" stroke="#ff4d4f" stroke-width="1.5" stroke-dasharray="4 3" opacity=".85"><title>Agent took over — ${new Date(tkTs).toLocaleDateString()}</title></line>`;
+    s+=`<line x1="${mx}" y1="${pad.t-1}" x2="${mx}" y2="${pad.t+ih}" stroke="#ff4d4f" stroke-width="1.5" stroke-dasharray="4 3" opacity=".85"><title>Agent took over — ${new Date(tkTs).toLocaleDateString('de-DE')}</title></line>`;
     s+=`<circle cx="${mx}" cy="${pad.t}" r="3.5" fill="#ff4d4f"/>`;
     s+=`<text x="${mx}" y="${pad.t-5}" text-anchor="${anchor}" fill="#ff4d4f" style="font-size:9px;font-family:'JetBrains Mono',monospace">agent</text>`;
   }
@@ -494,7 +512,7 @@ function drawTotalViews(){
   for(let g=0;g<=4;g++){const yy=yD(dTop*g/4);
     s+=`<text x="${W-pad.r+8}" y="${yy+3}" text-anchor="start" style="font-size:9.5px;font-family:'JetBrains Mono',monospace" fill="var(--teal)">${fmt(dTop*g/4)}</text>`;}
   for(let k=0;k<=3;k++){const t=tmin+(tmax-tmin)*k/3;
-    s+=`<text class="axis" x="${x(t)}" y="${H-14}" text-anchor="middle">${new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</text>`;}
+    s+=`<text class="axis" x="${x(t)}" y="${H-14}" text-anchor="middle">${new Date(t).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})}</text>`;}
   // axis titles
   s+=`<text x="${pad.l-8}" y="${pad.t-4}" text-anchor="end" style="font-size:9px;font-family:'JetBrains Mono',monospace" fill="var(--amber)">views</text>`;
   s+=`<text x="${W-pad.r+8}" y="${pad.t-4}" text-anchor="start" style="font-size:9px;font-family:'JetBrains Mono',monospace" fill="var(--teal)">installs</text>`;
@@ -536,15 +554,15 @@ function drawDownloads(){
   for(let g=0;g<=dDiv;g++){const val=Math.round(dTop*g/dDiv),yy=y(val);
     s+=`<line class="gridline" x1="${pad.l}" y1="${yy}" x2="${W-pad.r}" y2="${yy}"/><text class="axis" x="${pad.l-8}" y="${yy+3}" text-anchor="end">${val}</text>`;}
   for(let k=0;k<=3;k++){const t=tmin+(tmax-tmin)*k/3;
-    s+=`<text class="axis" x="${x(t)}" y="${H-14}" text-anchor="middle">${new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</text>`;}
+    s+=`<text class="axis" x="${x(t)}" y="${H-14}" text-anchor="middle">${new Date(t).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})}</text>`;}
   const bw=daily.length>1?Math.max(2,iw/daily.length*0.7):8;
   daily.forEach(p=>{if(p.n<=0)return;const h=ih-(y(p.n)-pad.t);
-    s+=`<rect x="${x(p.ts)-bw/2}" y="${y(p.n)}" width="${bw}" height="${h}" rx="2" fill="var(--amber)" opacity=".85"><title>${new Date(p.ts).toLocaleDateString()}: ${p.n} downloads</title></rect>`;});
+    s+=`<rect x="${x(p.ts)-bw/2}" y="${y(p.n)}" width="${bw}" height="${h}" rx="2" fill="var(--amber)" opacity=".85"><title>${new Date(p.ts).toLocaleDateString('de-DE')}: ${p.n} downloads</title></rect>`;});
   // red marker: where the agent (Claude) took over content
   const tkTs=Date.parse(CLAUDE_START);
   if(!isNaN(tkTs)&&tkTs>=tmin&&tkTs<=tmax){
     const mx=x(tkTs), anchor= mx>W-55?'end':(mx<pad.l+25?'start':'middle');
-    s+=`<line x1="${mx}" y1="${pad.t-1}" x2="${mx}" y2="${pad.t+ih}" stroke="#ff4d4f" stroke-width="1.5" stroke-dasharray="4 3" opacity=".85"><title>Agent took over — ${new Date(tkTs).toLocaleDateString()}</title></line>`;
+    s+=`<line x1="${mx}" y1="${pad.t-1}" x2="${mx}" y2="${pad.t+ih}" stroke="#ff4d4f" stroke-width="1.5" stroke-dasharray="4 3" opacity=".85"><title>Agent took over — ${new Date(tkTs).toLocaleDateString('de-DE')}</title></line>`;
     s+=`<circle cx="${mx}" cy="${pad.t}" r="3.5" fill="#ff4d4f"/>`;
     s+=`<text x="${mx}" y="${pad.t-5}" text-anchor="${anchor}" fill="#ff4d4f" style="font-size:9px;font-family:'JetBrains Mono',monospace">agent</text>`;
   }
@@ -569,6 +587,10 @@ document.getElementById('paidKpis').innerHTML = [
 /* ===== PROTOCOL — what's been done. Add a line at the TOP for each new action. =====
    tag is one of: milestone | post | experiment | win | plan  (controls the colored label) */
 const PROTOCOL = [
+  {date:'2026-09-04', tag:'milestone', title:'The App Store funnel was wrong on all three numbers — fixed, and it moves the priority to the search result', detail:'The dashboard read "Impressions 0 · 686 page views · 56.0%" and the zero was the tell: page views cannot exist without impressions. Three bugs in appstore_analytics() — it read Apple\'s Engagement Type column instead of the Event column (dropping all 17,981 impressions and counting every product-page Tap as a page view), it summed Standard + Detailed + Web Preview across two overlapping report requests, and index.html divided all-time downloads by a 119-day page-view window. The real funnel, 2026-01-16 to 2026-09-02: 17,981 impressions → 836 product page views (4.65%) → 384 downloads (45.9%). That flips the priority. The product page is not the bottleneck — it converts 40–67% every month. 95% of the loss happens in the search result, before anyone reaches the page, and at August volume each +1 point of CTR is worth about +73 page views and +33 downloads a month. Impressions are already growing on their own (116/day in July to 236/day in August) while downloads per 1,000 impressions fell 30.2 to 12.6. The app preview video therefore stops being optional: it autoplays muted in search results, at exactly the step that is losing 95%. New leading indicator: product page views per day, which tracks daily downloads at +0.76 against +0.19 for social views.'},
+  {date:'2026-09-02', tag:'milestone', title:'1.8.4 submitted — the subtitle finally shipped, and the App Store funnel is now measurable', detail:'The ASO fix drafted on 08-13 and never shipped is live in the submission: subtitle "AI Prompt Generator for Video" (the old one carried neither "generator" nor "video", which is why the app could not surface for that phrase). Around it: keywords rewritten to stop duplicating the subtitle, description rebuilt as scannable bullets with the style dial correctly scoped to cinema, categories moved off Produktivität to Grafik und Design + Foto und Video, and every field entered in BOTH localisations — Englisch (Kanada) is the PRIMARY and serves every storefront without its own, which nearly shipped the whole push to the US only. Google Fonts removed from the app itself (7 self-hosted WOFF2, 176 KB, no visual change), which made the privacy policy\'s "completely private and offline" and the listing\'s "100% on-device" true rather than nearly true, and removed the GDPR exposure (LG München I, 3 O 17493/20). Build 2 selected; age rating held at 4+ across 172 countries.'},
+  {date:'2026-09-02', tag:'milestone', title:'App Store Analytics Reports enabled — impressions, page views and conversion are readable for the first time', detail:'Flagged on 08-29 as the highest-value measurement work available and never done, because there is no toggle for it in App Store Connect — the feed is request-driven. Armed via the new scripts/enable_analytics.py: ONGOING plus a ONE_TIME_SNAPSHOT that backfills roughly a year of history. The dashboard now carries an App Store funnel section (impressions → product page views → downloads) that splits the two failure modes a single download total cannot: a weak FIRST step is an ASO problem, a weak SECOND step is a product-page problem. Pending state renders em-dashes and says "unknown, not zero" — Apple takes 24-48h to produce the first instance.'},
+  {date:'2026-09-02', tag:'experiment', title:'Facebook is not underperforming — it looks suppressed. 41× collapse, same content, different account', detail:'User posted the same footage from a second accidental account: median ~229 views, against the main account\'s August median of 4 and July median of 164.5. Content is held constant, so content cannot be the explanation. Likeliest cause is our own bug — data.js shows 7 duplicate uploads of the same asset since July 1, second upload losing every time (240→89, 327→256, 330→257, 12→4, 3→1). The "Facebook double-fire" was logged 4× as an operational annoyance and never as a distribution risk. NOT PROVEN: new accounts get a 2-3 week cold-start boost. SIGNAL: read Meta Account Status on both accounts (sent), and post one asset to both accounts the same day — if the new account still wins past week three, it is suppression, not novelty. Caveat: this partially confounds the 08-29 "views do not predict downloads" finding, which may have been measuring a dying account rather than testing content.'},
   {date:'2026-07-23', tag:'plan', title:'Cinematic Ads / Red Vespa scheduled — Saturday, all 4 platforms, the real IG test', detail:'The strongest Marketing Prompts piece: a 10s Seedance multi-reference Vespa ad (shutter-clicks + gong hook). Scheduled Saturday 19:00 CEST across TikTok, Instagram, Facebook, and YouTube. Crucially, this is the FIRST time trending audio gets tested on Instagram — every post since June (wins and failures alike) used original score, so "IG is throttled" was never actually proven. Signal: 100+ = IG is back. Also corrected a competitive claim before publishing it: Higgsfield has MORE camera presets than us (50-100+), so the real edge is portability across generators + 12 art-directed styles, not preset count. 19:00 CEST locked in as the standing post time.'},
   {date:'2026-07-20', tag:'post', title:'Marketing Prompts reel posted to TikTok — the new-audience play', detail:'The commercial story (sellers/brands) goes live: "No studio. No photographer. No shoot." → Marketing Prompts → App Store CTA. YouTube follows tomorrow with the searchable title "AI Product & Fashion Photos From a Prompt" — testing whether the 1,027 title-lever repeats (prediction: 300+). Downloads holding at 248 all-time / 86 last 30d / 28 last 7d — the launch bump is sustaining, not fading. Also wrote the in-app intro copy covering both cinematic AND marketing modes. v1.8.1 next: keyword + App Store search refresh.'},
   {date:'2026-07-19', tag:'win', title:'v1.8 launch = best week yet — downloads 30/wk, TikTok 771, YouTube 1,027', detail:'Both launch predictions HIT: downloads jumped to 30 last-7-days (from ~14; 243 all-time), and the Camera Angles TikTok hit the high bucket at 771 with the 2-second hook. The story of the week: YouTube — the account\'s weakest channel — delivered 1,027 on one Short because the title was searchable and feature-driven ("Now Pick Your Camera Angle — New in v1.8"). YouTube is a search engine; searchable benefit/how-to titles are a new, repeatable lever. Also: the recurring "FB double-posts" were Instagram auto-crossposting to Facebook, now being disabled. Positioning docs updated to the honest "style, light & angle / fewer wasted credits" USP.'},
@@ -604,12 +626,13 @@ const PROTOCOL = [
   {date:'2026-06-13', tag:'milestone', title:'Agent took over content', detail:'Claude Code began generating per-platform descriptions, hooks, and hashtags. Marked by the red line on the charts.'},
   {date:'2026-06-12', tag:'milestone', title:'Marketing system live', detail:'One command pulls YouTube + Instagram + Facebook + TikTok views and App Store downloads into this dashboard.'},
 ];
-function fmtProtoDate(iso){
+/* European date display (DD.MM.YYYY) everywhere on the page. The DATA stays ISO —
+   data.js keys, sorting and comparisons are untouched; only what a human reads changes. */
+function deDate(iso){
   const m=String(iso||'').match(/^(\d{4})-(\d{2})-(\d{2})/);
-  if(!m) return iso||'';
-  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  return `${m[3]} ${months[+m[2]-1]} ${m[1]}`;
+  return m ? `${m[3]}.${m[2]}.${m[1]}` : (iso||'');
 }
+function fmtProtoDate(iso){ return deDate(iso); }
 function renderProtocol(){
   const host=document.getElementById('protocol'); if(!host) return;
   const sorted=[...PROTOCOL].sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
@@ -619,12 +642,69 @@ function renderProtocol(){
   </div>`).join('');
 }
 
+/* ---------- App Store funnel: impressions → page views → downloads ----------
+   Source: Analytics Reports API (armed 2026-09-02), written to DASH.funnel by
+   refresh.py. Apple needs ~24-48h after arming to produce the first instance,
+   so the pending state is the normal first-run state, not an error. */
+function renderFunnel(){
+  const host=document.getElementById('funnel'); if(!host) return;
+  const note=document.getElementById('funnelNote');
+  const f=D.funnel||{};
+  const imp=f.impressions, pv=f.pageViews;
+  const pending=!(imp>0||pv>0);
+
+  /* Window-match the download number to the funnel window. DOWNLOADS is all-time
+     (from first release); the funnel series starts whenever Apple's analytics
+     history starts. Dividing one by the other invented a 56% conversion rate on
+     2026-09-04 — a fifth higher than the truth — because 384 all-time installs
+     were being measured against a 119-day slice of page views. */
+  const from=f.from||(f.series&&f.series[0]&&f.series[0].d), to=f.to||(f.series&&f.series.slice(-1)[0]&&f.series.slice(-1)[0].d);
+  const dlWin=(D.daily||[]).filter(x=>(!from||x.d>=from)&&(!to||x.d<=to)).reduce((a,x)=>a+(x.n||0),0);
+  const dl=dlWin||DOWNLOADS;
+  const windowed=dlWin>0&&dlWin!==DOWNLOADS;
+
+  const pct=(a,b)=>(b>0&&a>=0)?((a/b)*100):null;
+  const step=(label,val,sub,rate,rateLabel,weakUnder)=>{
+    const weak = rate!==null && rate!==undefined && weakUnder!==undefined && rate<weakUnder;
+    return `<div class="fstep${pending?' pending':''}">
+      <div class="flabel">${label}</div>
+      <div class="fnum">${val===null||val===undefined?'—':fmt(val)}</div>
+      <div class="fsub">${sub}</div>
+      ${rate===null||rate===undefined?'':`<span class="frate${weak?' weak':''}">${rate.toFixed(1)}% ${rateLabel}</span>`}
+    </div>`;
+  };
+
+  host.innerHTML =
+    step('Impressions', pending?null:imp, 'listing shown in search or browse', null, '') +
+    step('Product page views', pending?null:pv, 'tapped through to the page',
+         pending?null:pct(pv,imp), 'of impressions', 3) +
+    step('Downloads', pending?null:dl, windowed?'installs in this window':'all-time installs',
+         pending?null:pct(dl,pv), 'of page views', 25);
+
+  if(!note) return;
+  if(pending){
+    note.innerHTML='<b>Waiting for Apple.</b> The Analytics Reports feed was armed on 2026-09-02; '+
+      'the first daily instance takes ~24–48h, and the one-time snapshot backfills about a year of '+
+      'history. Run <b>./run.sh</b> after that and this fills in. Until then the numbers above are '+
+      'genuinely unknown — not zero.';
+  } else {
+    const r1=pct(pv,imp), r2=pct(dl,pv);
+    note.innerHTML=`${deDate(from)} → ${deDate(to)} (${f.days||0} days)`+
+      (windowed?`, downloads counted over the same window (all-time: ${fmt(DOWNLOADS)})`:'')+'. '+
+      (r1!==null&&r1<5?'<b>The weak step is impressions → page views</b> — that is search results: subtitle, icon, first screenshot. It is what 1.8.4 changes. ':'')+
+      (r2!==null&&r2>=25?'<b>The product page itself converts well</b> — people who reach it install. ':'')+
+      (r2!==null&&r2<25?'<b>Page views are not converting to installs</b> — that is the product page: screenshots, preview video, description. ':'')+
+      'Read this before optimising a caption: social views have never predicted downloads (see LESSONS).';
+  }
+}
+
 /* ---------- reveal ---------- */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.rev').forEach(el=>io.observe(el));
 
 renderPlatforms();
 recompute();
+renderFunnel();
 renderProtocol();
 updateStamp();
 </script>

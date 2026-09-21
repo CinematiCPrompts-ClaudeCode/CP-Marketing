@@ -8,6 +8,122 @@ verbatim before grading it, so the system is on record being right or wrong.
 
 ---
 
+## Week of 2026-09-07 — the Facebook experiment HIT; the ad found the real problem
+
+**Posted:** `Marketing-Prompts-Reel-CLEAN.mp4` — Facebook 12.09, TikTok 12.09, Instagram 12.09,
+YouTube 13.09. Apple Search Ads ran 09.09 19:00 → 13.09 21:00.
+
+**Results:**
+- **Facebook: 326** — against an August median of **4.5**. Second post over 300 in eight days
+  (555, 326).
+- TikTok: **243** — just under the predicted 255–303 variety band.
+- Instagram: **5** — dead, as diagnosed; copy experiments there are killed.
+- YouTube: **11** on 13.09, and **another upload shipped non-Public on 11.09**.
+- **Downloads this week: 25** (all-time 417), against **12** the week before.
+
+**Grading the prediction — quoted verbatim:**
+> *"the next Facebook post, using the **same caption formula on the same content type**… **clears
+> 200**… Under **50** → it was a one-off."*
+
+Content type changed (narrative single-scene → marketing multi-subject) while the caption formula
+was held constant, converting replication into isolation. **326 — HIT, and it clears the threshold
+by 63%.** Running score: **3 HIT, 5 MISS.**
+
+**What it means:** the **caption formula is the driver** — plain-declarative open, explicit mechanism
+sentence, friction-removal close. It survived a full content-type change. Content type is secondary
+on Facebook, which is the opposite of what the May–July gallery data suggested and worth watching.
+
+**★ The download slide reversed.** 27 → 25 → 20 → 14 → **12** → **25**. First up-week since early
+August, and it began 07.09 — before the ad started — so the driver is the organic impression
+recovery (50 → 117/day, pre-ad) rather than paid traffic.
+
+**★★ The ad's finding is the most useful thing in the week, and it is not a good one.**
+~1,200 paid impressions over three days produced a CTR of **2.0% / 0.7% / 2.2%**. That is
+pre-registered reading #2: *impressions arrive, nobody taps.* **The terms are not the problem — the
+search-result tile is.** Icon, name, subtitle, first screenshot. The cover screenshot built on
+06.09 is still not uploaded, and this is the evidence that it matters.
+
+**Prediction for next week:** with the cover screenshot uploaded and nothing else changed, **paid
+CTR clears 3%**. If it stays under 1.5% with a new first screenshot, the weak element is the **icon**,
+not the screenshots — and that is a different and more expensive fix.
+
+---
+
+## Week of 2026-09-01 — Facebook came back from the dead, and it was not our plan
+
+**Posted this week:** *The Crossing* (East Berlin, 1987 — one night, one street, angle and light
+changing shot to shot) — TikTok 04.09, Facebook 05.09, Instagram 06.09, YouTube 06.09.
+**One asset, four platforms, four captions.** The Facebook caption was written by the user, not
+by this system.
+
+**Results:**
+- **Facebook: 537** — against an August median of **4.5** (n=10). **119×.** Best FB post since
+  27.07 (331), and above July's median of 164.5.
+- TikTok: **243** — below its own recent median of 268 (n=7 since 01.08). Slightly under par.
+- Instagram: **3** — its own worst in the visible history; August median 12, best 38.
+- YouTube: **2** — against a since-01.08 median of 30 on the 5 rows that are not Private/Deleted.
+- Downloads this week: **11** recorded (all-time **391**). ⚠️ The final day of Apple's series is
+  systematically partial — on 04.09 the last row read 0 and now reads 2 — so the true figure is
+  likely **12–14**.
+
+**Grading last week's prediction:**
+> *"downloads stay in **17–26** with reduced posting — because if views were driving them, this
+> week's collapse to 282 views should already have broken the band, and it did not. If downloads
+> fall below 15, posting volume does matter after all and this whole conclusion needs revisiting."*
+
+**Actual: 11 (likely 12–14 once the tail fills). MISS — and it landed on or under the 15 line the
+prediction itself named as its own falsification trigger.** Running score on written predictions:
+**2 HIT, 5 MISS.**
+
+**But the trigger does not fire cleanly, and honesty requires saying why.** The prediction's logic
+was "if downloads fall below 15, posting volume matters after all." Two confounds arrived in the
+same window: **1.8.4 went live 03.09** (new subtitle, new categories — Apple re-indexes and
+rankings move), and this was a release week, which the launch plan had already agreed to discard.
+So the sub-15 week is **not** clean evidence that posting volume drives downloads. It is a flag to
+watch, not a reversal. **Do not re-open the "post more" strategy on this number alone.**
+
+**Experiment status: the Instagram return-to-form package was never posted — VOID, not graded.**
+`packages/2026-09-03-instagram-return-to-form.md` specified a **single coastal subject**,
+pain-first, **Friday 19:00**. What actually went to Instagram was Sunday's East Berlin cross-post.
+The stop rule (*clears 60 → content type was the problem; under 25 → the next test is
+account-level*) therefore has no clean result to grade.
+
+**The evidence arrived anyway, from a better direction.** The same asset went to all four
+platforms in the same week — **content is held constant by construction**:
+
+| | Facebook | TikTok | Instagram | YouTube |
+|---|---|---|---|---|
+| The Crossing | **537** | 243 | **3** | 2 |
+
+**537 against 3, same footage, same week.** Instagram's problem is not content, not framing and not
+the caption — no copy decision produces a 179× gap against the same film on another platform. This
+is the third independent signal pointing the same way (07-13 three failed IG interventions; 08-29
+grounding on IG's own best post returned 7; now this). **Verdict: KILL Instagram copy experiments.
+The next IG test is account-level — reach settings, posting method, Page-vs-profile — or nothing.**
+
+**What I changed and why:**
+- **Facebook is un-parked.** It had been written off as "structurally collapsed, needs diagnosis
+  not content" and the 03.09 package was deliberately Instagram-only. **That call was wrong**, and
+  the correction came from the user posting anyway. A suppressed account does not produce 537.
+- **Four candidate causes, all confounded, none promoted to a rule at n=1:** (a) the caption shape
+  — long, plain-declarative, with an explicit *mechanism* sentence and a friction-removal close
+  ("Free on the App Store, no account"); (b) duplicate posting stopped on 03.09, and **every**
+  August FB post was half of a duplicate pair; (c) content type — narrative single-scene versus
+  August's feature-lists and variety reels; (d) early-Saturday timing, never tested. Plus an open
+  question: **which account posted it.**
+- **The sober half: it did not reach the KPI.** 05.09 recorded **1 product page view** and **2
+  downloads**. The best social post in six weeks moved nothing measurable. The 08-29 finding holds,
+  now on a far better instrument (daily page views track daily downloads at +0.76; social views at
+  +0.19).
+
+**Prediction for next week:** the next Facebook post, using the **same caption formula on the same
+content type** (narrative single-scene, mechanism sentence, "free, no account" close), **clears
+200**. Replication before isolation — at n=1 the first job is proving 537 was not a fluke. Under
+**50** → it was a one-off or account-specific, and Facebook goes back to diagnosis rather than
+content. Either way, **downloads are not expected to move**, and that is not the test.
+
+---
+
 ## Week of 2026-08-29 — the week that reframed the whole effort
 
 **All three posts flopped:** Instagram **7** (Tue), YouTube **3** (Wed, published 20:00 not

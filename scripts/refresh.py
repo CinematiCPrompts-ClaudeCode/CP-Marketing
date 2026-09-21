@@ -98,7 +98,7 @@ def youtube_uploads():
             items = data.get("items",[])
             if not items: print("  · channel not found for handle @"+handle); return []
             playlist = items[0]["contentDetails"]["relatedPlaylists"]["uploads"]
-        token = None
+        token, seen_tokens = None, set()
         # NOTE: this playlist has a poisoned entry around position ~36-40 (a deleted or
         # otherwise broken item). ANY page that spans it returns a bogus 404. We therefore
         # keep whatever we collected before the failure instead of discarding it — losing
@@ -123,6 +123,16 @@ def youtube_uploads():
                             "published": _ts})
             token = pd.get("nextPageToken")
             if not token: break
+            # RUNAWAY GUARD (added 08.09.2026 after ./run.sh spun for 12 minutes at ~6
+            # requests/second — thousands of calls, no output, and the daily YouTube
+            # quota draining the whole time). A playlist can hand back a page token that
+            # returns the same page forever, and `if not token` never fires on it. Two
+            # independent brakes: a repeated token, and a hard page cap.
+            if token in seen_tokens:
+                print("  · YouTube pagination returned a repeating page token — stopping"); break
+            if len(seen_tokens) >= 40:
+                print("  · YouTube pagination hit the 40-page cap — stopping"); break
+            seen_tokens.add(token)
         return out
     except Exception as e:
         if out:
@@ -159,7 +169,7 @@ def _uploads_tail(key, found):
             return []
         uploads = items[0]["contentDetails"]["relatedPlaylists"]["uploads"]
 
-        extra, token = [], None
+        extra, token, seen_tokens = [], None, set()
         while True:
             params = {"part": "contentDetails,snippet", "playlistId": uploads,
                       "maxResults": 50, "key": key}
@@ -179,6 +189,12 @@ def _uploads_tail(key, found):
             token = pd.get("nextPageToken")
             if not token:
                 break
+            # same runaway guard as the curated loop above — see that comment
+            if token in seen_tokens:
+                print("  · uploads pagination returned a repeating page token — stopping"); break
+            if len(seen_tokens) >= 40:
+                print("  · uploads pagination hit the 40-page cap — stopping"); break
+            seen_tokens.add(token)
 
         if extra:
             print(f"  · recovered {len(extra)} newer video(s) from the uploads playlist:")
@@ -269,6 +285,156 @@ def appstore_totals():
     cutoff = (yest - datetime.timedelta(days=59)).isoformat()
     last60 = sum(v for ds, v in vals.items() if ds >= cutoff)
     return all_time, last60, daily
+
+# ---------------------------------------------------------------------------
+# App Store Analytics Reports — impressions / product page views / conversion.
+# Different API from salesReports above: request-driven, async, gzipped CSV.
+# Armed once via scripts/enable_analytics.py; IDs recorded in data-sources.md.
+#
+# Two things this must never do, both learned the hard way in this project:
+#  · never raise into main() (a YouTube 403 once killed the whole refresh), and
+#  · never return zeros that look like real data when the fetch failed — the
+#    caller distinguishes {} (no data) from a dict with real numbers.
+# Apple also STOPS an ONGOING request that goes unread ("stoppedDueToInactivity"),
+# so this running weekly is what keeps the feed alive, not just the initial POST.
+# ---------------------------------------------------------------------------
+ASC_API = "https://api.appstoreconnect.apple.com/v1"
+
+def _asc_token():
+    import jwt, time as _t
+    kp = os.environ["ASC_PRIVATE_KEY_PATH"]
+    if not os.path.isabs(kp): kp = os.path.join(ROOT, kp)
+    now = int(_t.time())
+    return jwt.encode({"iss": os.environ["ASC_ISSUER_ID"], "iat": now,
+                       "exp": now + 60 * 19, "aud": "appstoreconnect-v1"},
+                      open(kp).read(), algorithm="ES256",
+                      headers={"kid": os.environ["ASC_KEY_ID"]})
+
+def _pick_col(fieldnames, *musts):
+    """Apple's analytics column names drift between report versions, so match on
+    substrings rather than hardcoding. Returns the first field containing all
+    the given fragments (case-insensitive)."""
+    for f in fieldnames or []:
+        low = f.lower()
+        if all(m in low for m in musts): return f
+    return None
+
+def appstore_analytics(days=400):
+    need = ["ASC_KEY_ID", "ASC_ISSUER_ID", "ASC_PRIVATE_KEY_PATH"]
+    if any(not os.environ.get(n) for n in need): return {}
+    try:
+        import jwt, gzip, io, requests  # noqa: F401
+    except ImportError:
+        return {}
+    try:
+        h = {"Authorization": f"Bearer {_asc_token()}"}
+    except Exception as e:
+        print(f"  · analytics skipped (token: {e})"); return {}
+
+    def get(url, **params):
+        try:
+            r = requests.get(url, headers=h, params=params or None, timeout=60)
+            return r.json() if r.status_code == 200 else None
+        except Exception:
+            return None
+
+    apps = get(f"{ASC_API}/apps", **{"limit": 50})
+    if not apps or not apps.get("data"):
+        print("  · analytics skipped (no app visible to this key)"); return {}
+    app_id = apps["data"][0]["id"]
+
+    reqs = get(f"{ASC_API}/apps/{app_id}/analyticsReportRequests")
+    if not reqs or not reqs.get("data"):
+        print("  · analytics: no report request armed "
+              "(run scripts/enable_analytics.py --create --snapshot)")
+        return {}
+
+    cutoff = (datetime.date.today() - datetime.timedelta(days=days)).isoformat()
+
+    # ---- ONE report name, and the Event column, not the Engagement Type column.
+    # Both mistakes were live until 2026-09-04 and between them produced a funnel
+    # that read "0 impressions, 686 page views":
+    #   · "Standard" and "Detailed" carry the SAME events at different dimensional
+    #     depth, and the snapshot and ongoing requests cover overlapping dates, so
+    #     summing across them multiplies every number. "Web Preview" is a different
+    #     surface (apps.apple.com in a browser) with no impression denominator and
+    #     does not belong in this funnel at all.
+    #   · The metric lives in the **Event** column (Impression / Page view / Tap).
+    #     "Engagement Type" is a different column holding Get/Open/Share/Update and
+    #     is empty for impressions — matching it dropped all 18k impressions and
+    #     let every Tap on the product page count as a page view.
+    WANT = "app store discovery and engagement standard"
+    per_date, seen_cols, instances_read = {}, set(), 0
+
+    def merge(ds, vals):
+        # max, never sum: overlapping sources report the same day twice.
+        cur = per_date.setdefault(ds, {"imp": 0, "pv": 0, "tap": 0})
+        for k, v in vals.items():
+            if v > cur[k]: cur[k] = v
+
+    for rq in reqs["data"]:
+        reports = get(f"{ASC_API}/analyticsReportRequests/{rq['id']}/reports",
+                      **{"filter[category]": "APP_STORE_ENGAGEMENT", "limit": 200})
+        for rep in ((reports or {}).get("data") or []):
+            if (rep["attributes"].get("name") or "").strip().lower() != WANT:
+                continue
+            insts = get(f"{ASC_API}/analyticsReports/{rep['id']}/instances",
+                        **{"filter[granularity]": "DAILY", "limit": 200})
+            for inst in ((insts or {}).get("data") or []):
+                pdate = inst["attributes"].get("processingDate") or ""
+                if pdate < cutoff: continue
+                segs = get(f"{ASC_API}/analyticsReportInstances/{inst['id']}/segments")
+                one = {}
+                for seg in ((segs or {}).get("data") or []):
+                    url = seg["attributes"].get("url")
+                    if not url: continue
+                    try:
+                        raw = requests.get(url, timeout=180).content
+                        text = gzip.GzipFile(fileobj=io.BytesIO(raw)).read().decode("utf-8")
+                    except Exception:
+                        continue
+                    delim = "\t" if text[:2000].count("\t") > text[:2000].count(",") else ","
+                    rdr = csv.DictReader(io.StringIO(text), delimiter=delim)
+                    fn = rdr.fieldnames or []
+                    seen_cols.update(fn)
+                    c_date = _pick_col(fn, "date")
+                    c_cnt = _pick_col(fn, "count") or _pick_col(fn, "unique")
+                    c_event = _pick_col(fn, "event")
+                    c_page = _pick_col(fn, "page", "type")
+                    if not (c_date and c_cnt and c_event): continue
+                    instances_read += 1
+                    for row in rdr:
+                        ds = (row.get(c_date) or "")[:10]
+                        if not ds: continue
+                        try: n = int(float(row.get(c_cnt) or 0))
+                        except (TypeError, ValueError): continue
+                        ev = (row.get(c_event) or "").strip().lower()
+                        pg = (row.get(c_page) or "").strip().lower()
+                        b = one.setdefault(ds, {"imp": 0, "pv": 0, "tap": 0})
+                        if ev == "impression": b["imp"] += n
+                        elif ev == "page view" and "product page" in pg: b["pv"] += n
+                        elif ev == "tap": b["tap"] += n
+                for ds, vals in one.items(): merge(ds, vals)
+
+    if not per_date:
+        if instances_read == 0:
+            print("  \u00b7 analytics: request armed, no report instance yet "
+                  "(Apple takes ~24-48h after arming)")
+        else:
+            print(f"  \u00b7 analytics: read {instances_read} instance(s) but matched no rows \u2014 "
+                  f"column mapping needs review. Columns seen: {sorted(seen_cols)[:12]}")
+        return {}
+
+    series = [{"d": d, "imp": v["imp"], "pv": v["pv"], "tap": v["tap"]}
+              for d, v in sorted(per_date.items())]
+    imp = sum(v["imp"] for v in per_date.values())
+    pv = sum(v["pv"] for v in per_date.values())
+    tap = sum(v["tap"] for v in per_date.values())
+    print(f"  \u00b7 analytics: {imp:,} impressions \u00b7 {pv:,} product page views \u00b7 "
+          f"{tap:,} taps across {len(series)} days ({series[0]['d']} \u2192 {series[-1]['d']})")
+    return {"impressions": imp, "pageViews": pv, "taps": tap,
+            "days": len(series), "from": series[0]["d"], "to": series[-1]["d"],
+            "series": series}
 
 # ---------------------------------------------------------------------------
 # Meta (Instagram + Facebook) — dormant until META_ACCESS_TOKEN is set in .env.
@@ -628,6 +794,9 @@ def main():
     else:
         print(f"  · {all_time} downloads all-time · {last60} in the last ~2 months")
 
+    print("Fetching App Store analytics (impressions / page views) …")
+    funnel = appstore_analytics()
+
     # TikTok: from the Display API if set up, otherwise manual (videos.csv rows with a tiktok value)
     print("Fetching TikTok …")
     tiktok = tiktok_fetch()
@@ -643,7 +812,13 @@ def main():
             "downloads": all_time if all_time is not None else 0,
             "downloads60": last60 if last60 is not None else 0,
             "daily": daily,
+            "funnel": funnel,
             "updated": datetime.datetime.now().isoformat(timespec="seconds")}
+    # Analytics is the newest source and the slowest to arrive; an empty pull must
+    # keep the last good funnel rather than blanking the dashboard section.
+    if not funnel:
+        prev_funnel = _load_previous_dash().get("funnel")
+        if prev_funnel: data["funnel"] = prev_funnel
     prev = _load_previous_dash()
 
     # A failed API call must never silently destroy history. If a source came back

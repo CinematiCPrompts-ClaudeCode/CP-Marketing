@@ -1,0 +1,44 @@
+<style>@import url('_base-ipad.css');
+  /* 4:3 is wide enough to set the headline and the two dial columns side by side,
+     which the phone canvas could not do. The lighting strip then runs full width. */
+  .type{position:absolute;left:150px;top:190px;width:880px}
+  .head{margin-top:40px;font-size:196px;line-height:1.0;font-weight:500;letter-spacing:-.032em}
+  .sub{margin-top:52px;font-size:66px;line-height:1.3;font-weight:300;color:var(--ink-muted)}
+  .cols{position:absolute;left:1030px;right:150px;top:300px;display:grid;
+        grid-template-columns:1fr 1fr;gap:48px}
+  .col{border-top:2px solid var(--hairline);padding-top:36px}
+  .col h3{font-size:64px;font-weight:500;margin-bottom:34px}
+  .col ul{list-style:none;display:flex;flex-direction:column;gap:22px}
+  .col li{font-family:'Jost',sans-serif;font-size:52px;font-weight:300;color:var(--ink);line-height:1.25}
+  .col li b{font-family:'Space Mono',monospace;font-size:52px;font-weight:700;margin-right:8px}
+  .total{position:absolute;left:150px;right:150px;top:1150px;
+         border-top:2px solid var(--hairline);padding-top:44px;font-size:76px;font-weight:400}
+  .total b{color:var(--amber);font-weight:500}
+  .strip{position:absolute;left:150px;right:150px;top:1360px;
+         display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .strip img{width:100%;height:860px;object-fit:cover;border-radius:14px;display:block}
+  .strip span{display:block;margin-top:20px;font-family:'Space Mono',monospace;
+              font-size:38px;color:var(--ink-faint);text-align:center}
+</style>
+<div class="shot">
+  <div class="type">
+    <div class="eyebrow">The three dials</div>
+    <div class="head">Style.<br>Light.<br>Angle.</div>
+    <div class="sub">All by choice, before anything is generated.</div>
+  </div>
+  <div class="cols">
+    <div class="col"><h3>Cinema</h3><ul>
+      <li><b>12</b> styles</li><li><b>5</b> daylight</li><li><b>6</b> camera angles</li></ul></div>
+    <div class="col"><h3>Marketing</h3><ul>
+      <li><b>8</b> environments</li><li><b>6</b> studio lights</li><li><b>6</b> camera angles</li></ul></div>
+  </div>
+  <div class="total"><b>11 lighting setups</b> across the two surfaces.</div>
+  <div class="strip">
+    <div><img src="l1.png"><span>Dawn</span></div>
+    <div><img src="l2.png"><span>Sunny</span></div>
+    <div><img src="l3.png"><span>Golden Hour</span></div>
+    <div><img src="l4.png"><span>Blue Hour</span></div>
+    <div><img src="l5.png"><span>Night</span></div>
+  </div>
+  <div class="foot"><img src="app-icon.png" alt=""><span class="wordmark">Cinematic Prompts</span></div>
+</div>

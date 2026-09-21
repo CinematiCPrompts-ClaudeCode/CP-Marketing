@@ -1,0 +1,47 @@
+<style>@import url('_base.css');
+  .type{position:absolute;left:110px;right:110px;top:111px}
+  .head{margin-top:34px;font-size:168px;line-height:1.0;font-weight:500;letter-spacing:-.032em}
+  .sub{margin-top:42px;font-size:64px;line-height:1.34;font-weight:300;color:var(--ink-muted);max-width:940px}
+  .cols{position:absolute;left:110px;right:110px;top:1010px;display:grid;
+        grid-template-columns:1fr 1fr;gap:48px}
+  .col{border-top:2px solid var(--hairline);padding-top:30px}
+  .col h3{font-size:56px;font-weight:500;letter-spacing:.01em;margin-bottom:26px}
+  .col ul{list-style:none;display:flex;flex-direction:column;gap:16px}
+  .col li{font-family:'Jost',sans-serif;font-size:50px;font-weight:300;color:var(--ink);line-height:1.25}
+  .col li b{font-family:'Space Mono',monospace;font-size:46px;font-weight:700;color:var(--ink);margin-right:6px}
+  .total{position:absolute;left:110px;right:110px;top:1420px;
+         border-top:2px solid var(--hairline);padding-top:34px;
+         font-size:66px;font-weight:400}
+  .total b{color:var(--amber);font-weight:500}
+  .strip{position:absolute;left:110px;right:110px;top:1630px;display:grid;
+         grid-template-columns:repeat(5,1fr);gap:8px}
+  .strip img{width:100%;height:660px;object-fit:cover;border-radius:12px;display:block}
+  .strip span{display:block;margin-top:14px;font-family:'Space Mono',monospace;
+              font-size:30px;color:var(--ink-faint);text-align:center}
+</style>
+<div class="shot">
+  <div class="type">
+    <div class="eyebrow">The three dials</div>
+    <div class="head">Style.<br>Light.<br>Angle.</div>
+    <div class="sub">All by choice, before anything is generated.</div>
+  </div>
+  <div class="cols">
+    <div class="col"><h3>Cinema</h3><ul>
+      <li><b>12</b> styles</li>
+      <li><b>5</b> daylight</li>
+      <li><b>6</b> camera angles</li></ul></div>
+    <div class="col"><h3>Marketing</h3><ul>
+      <li><b>8</b> environments</li>
+      <li><b>6</b> studio lights</li>
+      <li><b>6</b> camera angles</li></ul></div>
+  </div>
+  <div class="total"><b>11 lighting setups</b> across the two surfaces.</div>
+  <div class="strip">
+    <div><img src="l1.png"><span>Dawn</span></div>
+    <div><img src="l2.png"><span>Sunny</span></div>
+    <div><img src="l3.png"><span>Golden Hour</span></div>
+    <div><img src="l4.png"><span>Blue Hour</span></div>
+    <div><img src="l5.png"><span>Night</span></div>
+  </div>
+  <div class="foot"><img src="app-icon.png" alt=""><span class="wordmark">Cinematic Prompts</span></div>
+</div>

@@ -1,0 +1,27 @@
+<style>@import url('_base-ipad.css');
+  /* Same side-by-side pattern as tile-cover-ipad.html. Manual crop on the photo,
+     not object-fit:cover — the narrow 1140x2752 column needs the same tight frame
+     on her full figure that the phone tile uses, just re-fit to a taller box. */
+  .photo{position:absolute;right:0;top:0;bottom:0;width:1140px;overflow:hidden}
+  .photo img{position:absolute;width:2710px;height:4855px;left:-785px;top:-1976px;display:block}
+  .photo::after{content:'';position:absolute;inset:0;
+    background:linear-gradient(90deg,#0a0a0a 0%,rgba(10,10,10,.72) 9%,rgba(10,10,10,0) 26%)}
+  .type{position:absolute;left:150px;top:420px;width:760px;z-index:2}
+  .head{margin-top:36px;font-size:176px;line-height:1.0;font-weight:500;letter-spacing:-.032em}
+  .sub{margin-top:50px;font-size:80px;line-height:1.16;font-weight:500;
+       letter-spacing:-.01em;color:var(--ink-muted)}
+  .note{margin-top:50px;font-size:62px;line-height:1.34;font-weight:300;color:var(--ink-muted)}
+  .credit{margin-top:54px;font-family:'Space Mono',monospace;font-size:36px;
+          line-height:1.35;color:var(--ink-faint)}
+</style>
+<div class="shot">
+  <div class="photo"><img src="tile-before-photo.jpg" alt=""></div>
+  <div class="type">
+    <div class="eyebrow">Before</div>
+    <div class="head">Just a<br>prompt.</div>
+    <div class="sub">Whatever it guesses, you get.</div>
+    <div class="note">No style. No lighting. No angle — the generator decides everything.</div>
+    <div class="credit">Generated with Gemini. No prompt guidance.</div>
+  </div>
+  <div class="foot"><img src="app-icon.png" alt=""><span class="wordmark">Cinematic Prompts</span></div>
+</div>

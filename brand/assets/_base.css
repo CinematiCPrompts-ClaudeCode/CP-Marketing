@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400&family=Space+Mono:wght@400;700&display=swap');
+/* Values from docs/brand/corporate-identity.html (1.8.6 source, 14.09.2026).
+   Ground is a gradient, not a flat colour — the most-missed value on the sheet.
+   Playfair = app name only. Jost = everything a user reads. Space Mono = values. */
+:root{
+  --ink:#F5F4F0; --ink-muted:#818598; --ink-faint:#6C7185;
+  --amber:#F4AA34; --rust:#C6492A; --petrol:#0B4F6A; --teal:#22B6C3;
+  --hairline:#2B2E3B; --surface:#181B25;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1284px;height:2778px;overflow:hidden}
+.shot{position:relative;width:1284px;height:2778px;
+  background:linear-gradient(180deg,#000 0%,#222 100%);
+  color:var(--ink);font-family:'Jost',sans-serif;-webkit-font-smoothing:antialiased}
+.eyebrow{font-family:'Space Mono',monospace;font-size:38px;font-weight:400;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--amber)}
+.wordmark{font-family:'Playfair Display',Georgia,serif;font-weight:400;
+  font-size:84px;letter-spacing:-.015em;color:var(--ink)}
+
+/* Shared bottom lockup: shipped 1.8.6 icon + Playfair wordmark.
+   Icon source is AppIcon-512@2x.png, the file the CI names for slides.
+   Platform masks the corners, so the radius is applied here. */
+.foot{position:absolute;left:0;right:0;bottom:110px;z-index:2;
+      display:flex;align-items:center;gap:44px;
+      padding:52px 110px 0;border-top:2px solid var(--hairline)}
+.foot img{width:154px;height:154px;border-radius:34px;display:block}
